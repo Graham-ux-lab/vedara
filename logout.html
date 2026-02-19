@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Logout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9f2;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        
+        .logout-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            border: 1px solid #e8f5e8;
+            text-align: center;
+        }
+        
+        .logout-header {
+            background: linear-gradient(135deg, #2d5016 0%, #3a661d 100%);
+            color: white;
+            padding: 40px;
+        }
+        
+        .logout-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .logout-header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .logout-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .logout-body {
+            padding: 40px;
+        }
+        
+        .logout-message {
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .logout-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        .btn-logout {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        .btn-logout:hover {
+            background-color: #3a661d;
+        }
+        
+        .btn-cancel {
+            background-color: transparent;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #f5f5f5;
+            border-color: #ccc;
+        }
+        
+        .btn-logout-all {
+            background-color: #d32f2f;
+            color: white;
+        }
+        
+        .btn-logout-all:hover {
+            background-color: #c62828;
+        }
+        
+        /* Status Messages */
+        .logout-status {
+            display: none;
+            padding: 30px;
+        }
+        
+        .status-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .status-message h3 {
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .status-message p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .redirect-timer {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            color: #2d5016;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 30px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .logout-body {
+                padding: 30px 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logout-header {
+                padding: 30px 20px;
+            }
+            
+            .logout-header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="user_profile.html">Profile</a></li>
+                        <li><a href="logout.html" class="active">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="logout-container">
+                <div class="logout-header">
+                    <div class="logout-icon">👋</div>
+                    <h1>Log Out</h1>
+                    <p>Secure logout from VEDARA platform</p>
+                </div>
+                
+                <div class="logout-body">
+                    <!-- Logout Options -->
+                    <div id="logoutOptions" class="logout-options">
+                        <div class="logout-message">
+                            <p>You are about to sign out of your VEDARA account.</p>
+                            <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                                Choose your logout option:
+                            </p>
+                        </div>
+                        
+                        <div class="logout-buttons">
+                            <button onclick="performLogout()" class="btn btn-logout">Log Out This Device</button>
+                            <button onclick="logoutAllDevices()" class="btn btn-logout-all">Log Out All Devices</button>
+                            <a href="dashboard.html" class="btn btn-cancel">Cancel and Return</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Success Status -->
+                    <div id="logoutStatus" class="logout-status">
+                        <div class="status-icon" id="statusIcon">✓</div>
+                        <div class="status-message">
+                            <h3 id="statusTitle">Successfully Logged Out</h3>
+                            <p id="statusMessage">You have been securely logged out of your VEDARA account.</p>
+                            <div class="redirect-timer">
+                                Redirecting to homepage in <span id="countdownTimer">3</span> seconds...
+                            </div>
+                            <a href="home page.html" class="btn" style="margin-top: 20px; background: #2d5016; color: white;">Go to Homepage Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 style="color: #2d5016; font-size: 20px; margin-bottom: 10px;">VEDARA</h3>
+                    <p style="color: #bbb; font-size: 14px;">Secure AgriTech Platform</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="security.html">Security</a>
+                    <a href="contact.html">Contact Support</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. All rights reserved.</p>
+                <p style="margin-top: 5px;">This page does not store any personal data.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript for logout functionality -->
+    <script>
+        // Logout function for current device
+        function performLogout() {
+            // Show success message
+            showSuccessMessage(
+                "✓",
+                "Successfully Logged Out",
+                "You have been logged out of this device."
+            );
+            
+            // Redirect to home page after 3 seconds
+            redirectToHome(3);
+        }
+        
+        // Logout from all devices function
+        function logoutAllDevices() {
+            // Confirm action
+            if (confirm('Are you sure you want to log out from ALL devices? This will end all active VEDARA sessions.')) {
+                // Show success message
+                showSuccessMessage(
+                    "✓",
+                    "Logged Out From All Devices",
+                    "All your VEDARA sessions have been securely terminated."
+                );
+                
+                // Redirect to home page after 3 seconds
+                redirectToHome(3);
+            }
+        }
+        
+        // Show success message and hide logout options
+        function showSuccessMessage(icon, title, message) {
+            // Get elements
+            const logoutOptions = document.getElementById('logoutOptions');
+            const logoutStatus = document.getElementById('logoutStatus');
+            const statusIcon = document.getElementById('statusIcon');
+            const statusTitle = document.getElementById('statusTitle');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // Update content
+            statusIcon.textContent = icon;
+            statusTitle.textContent = title;
+            statusMessage.textContent = message;
+            
+            // Show success message, hide logout options
+            logoutOptions.style.display = 'none';
+            logoutStatus.style.display = 'block';
+        }
+        
+        // Countdown timer and redirect to home
+        function redirectToHome(seconds) {
+            const timerElement = document.getElementById('countdownTimer');
+            let countdown = seconds;
+            
+            // Update timer every second
+            const timer = setInterval(() => {
+                countdown--;
+                timerElement.textContent = countdown;
+                
+                // When countdown reaches 0, redirect
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    window.location.href = 'dashboard.html';
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

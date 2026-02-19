@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Press</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Press Kit */
+        .press-kit {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: #2d5016;
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
+        
+        .kit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .kit-card {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .kit-card:hover {
+            transform: translateY(-10px);
+            border-color: #2d5016;
+            background: #e8f5e8;
+        }
+        
+        .kit-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #2d5016;
+        }
+        
+        .kit-card h3 {
+            font-size: 24px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .kit-card p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        /* Press Releases */
+        .press-releases {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .release-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #2d5016;
+        }
+        
+        .release-date {
+            color: #2d5016;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .release-title {
+            font-size: 28px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .release-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        /* Media Coverage */
+        .media-coverage {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .coverage-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+        }
+        
+        .coverage-header {
+            padding: 30px;
+            background: #f9f9f9;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .coverage-source {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .source-icon {
+            width: 50px;
+            height: 50px;
+            background: #2d5016;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .coverage-content {
+            padding: 30px;
+        }
+        
+        .coverage-content h3 {
+            font-size: 20px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        /* Team Profiles */
+        .team-profiles {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .profile-photo {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 64px;
+        }
+        
+        .profile-info {
+            padding: 30px;
+        }
+        
+        .profile-name {
+            font-size: 22px;
+            color: #2d5016;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .profile-role {
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-card h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-item h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: #2d5016;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a6c1e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(45, 80, 22, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #2d5016;
+            border: 2px solid #2d5016;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: #2d5016;
+        }
+        
+        .btn-small {
+            padding: 10px 24px;
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #2d5016;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: #3a6c1e;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .kit-grid,
+            .coverage-grid,
+            .profiles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .contact-details {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .contact-card {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="how_it_works.html">How It Works</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="API.html">API</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="press.html" class="active">Press</a></li>
+                    </ul>
+                </nav>
+                
+                <a href="login.html" class="btn btn-secondary">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Press & Media</h1>
+            <p>Latest news, media assets, and information about VEDARA for journalists and media partners.</p>
+        </div>
+    </section>
+
+    <!-- Press Kit -->
+    <section class="press-kit">
+        <div class="container">
+            <h2 class="section-title">Media Resources</h2>
+            
+            <div class="kit-grid">
+                <div class="kit-card">
+                    <div class="kit-icon">📄</div>
+                    <h3>Press Releases</h3>
+                    <p>Official announcements, company news, and major updates from VEDARA.</p>
+                    <a href="press-releases.zip" class="btn btn-small">Download All</a>
+                </div>
+                
+                <div class="kit-card">
+                    <div class="kit-icon">🖼️</div>
+                    <h3>Media Assets</h3>
+                    <p>High-resolution logos, product screenshots, and team photos for media use.</p>
+                    <a href="media-assets.zip" class="btn btn-small">Download Pack</a>
+                </div>
+                
+                <div class="kit-card">
+                    <div class="kit-icon">🎬</div>
+                    <h3>Video Library</h3>
+                    <p>Product demos, company overview videos, and farmer testimonials.</p>
+                    <a href="videos.html" class="btn btn-small">View Videos</a>
+                </div>
+                
+                <div class="kit-card">
+                    <div class="kit-icon">📊</div>
+                    <h3>Company Facts</h3>
+                    <p>Key statistics, milestones, and company information for quick reference.</p>
+                    <a href="facts.pdf" class="btn btn-small">Download PDF</a>
+                </div>
+                
+                <div class="kit-card">
+                    <div class="kit-icon">👥</div>
+                    <h3>Executive Bios</h3>
+                    <p>Background information and photos of VEDARA's leadership team.</p>
+                    <a href="bios.pdf" class="btn btn-small">Download Bios</a>
+                </div>
+                
+                <div class="kit-card">
+                    <div class="kit-icon">📰</div>
+                    <h3>Brand Guidelines</h3>
+                    <p>Official brand standards, color palette, and logo usage guidelines.</p>
+                    <a href="brand-guide.pdf" class="btn btn-small">View Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press Releases -->
+    <section class="press-releases">
+        <div class="container">
+            <h2 class="section-title">Latest Press Releases</h2>
+            
+            <div class="release-card">
+                <div class="release-date">January 15, 2024</div>
+                <h3 class="release-title">VEDARA Expands to West Africa, Partners with 50,000 Farmers</h3>
+                <p class="release-excerpt">VEDARA announces expansion into Nigeria and Ghana, partnering with agricultural cooperatives to bring smart farming technology to 50,000 new farmers. The expansion includes local language support and region-specific crop advisory services.</p>
+                <a href="release-west-africa.html" class="btn btn-small">Read Release</a>
+            </div>
+            
+            <div class="release-card">
+                <div class="release-date">December 10, 2023</div>
+                <h3 class="release-title">VEDARA Raises $10M Series B for AI Farming Technology</h3>
+                <p class="release-excerpt">Leading agritech company VEDARA announces $10 million Series B funding round led by African Ventures. Funds will accelerate AI-powered crop disease detection and expand IoT sensor network across East Africa.</p>
+                <a href="release-funding.html" class="btn btn-small">Read Release</a>
+            </div>
+            
+            <div class="release-card">
+                <div class="release-date">November 5, 2023</div>
+                <h3 class="release-title">New Partnership with FAO to Train 100,000 Farmers</h3>
+                <p class="release-excerpt">VEDARA partners with the Food and Agriculture Organization to provide digital farming training to 100,000 smallholder farmers across Kenya, Tanzania, and Uganda over the next two years.</p>
+                <a href="release-fao.html" class="btn btn-small">Read Release</a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="all-releases.html" class="btn btn-secondary">View All Releases</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Coverage -->
+    <section class="media-coverage">
+        <div class="container">
+            <h2 class="section-title">Recent Media Coverage</h2>
+            
+            <div class="coverage-grid">
+                <div class="coverage-card">
+                    <div class="coverage-header">
+                        <div class="coverage-source">
+                            <div class="source-icon">T</div>
+                            <div>
+                                <h4 style="color: #2d5016;">Tech Africa</h4>
+                                <span style="color: #666; font-size: 14px;">January 12, 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="coverage-content">
+                        <h3>How VEDARA is Using AI to Fight Food Insecurity</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Feature article exploring VEDARA's AI-powered solutions and their impact on smallholder farmer productivity across East Africa.</p>
+                        <a href="article-tech-africa.html" class="btn btn-small">Read Article</a>
+                    </div>
+                </div>
+                
+                <div class="coverage-card">
+                    <div class="coverage-header">
+                        <div class="coverage-source">
+                            <div class="source-icon">B</div>
+                            <div>
+                                <h4 style="color: #2d5016;">Business Daily</h4>
+                                <span style="color: #666; font-size: 14px;">December 22, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="coverage-content">
+                        <h3>Agritech Startups Leading Africa's Digital Revolution</h3>
+                        <p style="color: #666; margin-bottom: 20px;">VEDARA featured among top African agritech companies transforming traditional agriculture through technology innovation.</p>
+                        <a href="article-business-daily.html" class="btn btn-small">Read Article</a>
+                    </div>
+                </div>
+                
+                <div class="coverage-card">
+                    <div class="coverage-header">
+                        <div class="coverage-source">
+                            <div class="source-icon">F</div>
+                            <div>
+                                <h4 style="color: #2d5016;">Farmers Weekly</h4>
+                                <span style="color: #666; font-size: 14px;">November 30, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="coverage-content">
+                        <h3>Digital Tools Helping Farmers Beat Climate Change</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Case study on how VEDARA's weather prediction and irrigation tools are helping farmers adapt to changing climate patterns.</p>
+                        <a href="article-farmers-weekly.html" class="btn btn-small">Read Article</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Profiles -->
+    <section class="team-profiles">
+        <div class="container">
+            <h2 class="section-title">Leadership for Interviews</h2>
+            
+            <div class="profiles-grid">
+                <div class="profile-card">
+                    <div class="profile-photo">JK</div>
+                    <div class="profile-info">
+                        <h3 class="profile-name">John Kamau</h3>
+                        <p class="profile-role">CEO & Co-founder</p>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Expertise: Agritech innovation, business strategy, sustainable agriculture</p>
+                        <a href="contact.html?person=john" class="btn btn-small">Request Interview</a>
+                    </div>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="profile-photo">MW</div>
+                    <div class="profile-info">
+                        <h3 class="profile-name">Mary Wanjiku</h3>
+                        <p class="profile-role">CTO & Co-founder</p>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Expertise: Agricultural technology, AI/ML, mobile development</p>
+                        <a href="contact.html?person=mary" class="btn btn-small">Request Interview</a>
+                    </div>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="profile-photo">SA</div>
+                    <div class="profile-info">
+                        <h3 class="profile-name">Sarah Amani</h3>
+                        <p class="profile-role">Head of Product</p>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Expertise: Product development, user experience, farmer adoption</p>
+                        <a href="contact.html?person=sarah" class="btn btn-small">Request Interview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="contact-info">
+        <div class="container">
+            <div class="contact-card">
+                <h2>Media Contact</h2>
+                <p style="font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 40px;">
+                    For media inquiries, interview requests, or additional information about VEDARA, please contact our communications team.
+                </p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h4>Press Inquiries</h4>
+                        <p style="font-size: 20px; font-weight: 600;">press@vedara.com</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>Phone</h4>
+                        <p style="font-size: 20px; font-weight: 600;">+254 700 123 456</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>Location</h4>
+                        <p style="font-size: 20px; font-weight: 600;">Nairobi, Kenya</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <a href="contact.html" class="btn btn-outline">Contact Form</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VEDARA</h3>
+                    <p>Transforming agriculture through innovative technology solutions. We build tools that empower farmers and promote sustainable farming practices across Africa.</p>
+                    <p>Our mission is to make advanced farming technology accessible to every farmer, regardless of farm size or location.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company Overview</h3>
+                    <p>VEDARA is a leading agritech company based in Nairobi, Kenya. Founded in 2018, we serve over 100,000 farmers across 15 African countries.</p>
+                    <p>We specialize in AI-powered farming solutions, IoT sensor networks, and digital marketplace platforms that connect farmers to markets.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Media Relations</h3>
+                    <p>For press inquiries, interview requests, or media partnerships, please contact our dedicated press team at press@vedara.com.</p>
+                    <p>We provide timely responses to media requests and can arrange interviews with our leadership team as needed.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Social Media</h3>
+                    <p>Follow VEDARA for the latest company updates, farmer success stories, and agricultural technology insights.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">T</a>
+                        <a href="#" class="social-icon">L</a>
+                        <a href="#" class="social-icon">F</a>
+                        <a href="#" class="social-icon">I</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. All rights reserved. All trademarks and logos are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

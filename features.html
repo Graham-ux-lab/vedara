@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2d5016, #3a6c1e);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .feature-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            color: #2d5016;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Feature Categories */
+        .category-section {
+            margin-bottom: 80px;
+        }
+        
+        .category-title {
+            text-align: center;
+            font-size: 32px;
+            color: #2d5016;
+            margin-bottom: 50px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .category-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #2d5016, #3a6c1e);
+            border-radius: 2px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 80px;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: #2d5016;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a6c1e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(45, 80, 22, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #2d5016;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="features.html" class="active">Features</a></li>
+                        <li><a href="how_it_works.html">How It Works</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="API.html">API Access</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Powerful Features for Modern Farmers</h1>
+                <p>Discover how VEDARA's comprehensive toolkit helps you manage every aspect of your farming operations efficiently and effectively.</p>
+                <a href="dashboard.html" class="btn">Start Today</a>
+            </div>
+        </section>
+
+        <!-- Farm Management Features -->
+        <div class="container">
+            <section class="category-section">
+                <h2 class="category-title">Farm Management</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Crop Monitoring</h3>
+                        <p>Track growth stages, health status, and progress of all your crops in one place.</p>
+                        <ul class="feature-list">
+                            <li>Real-time growth tracking</li>
+                            <li>Disease detection alerts</li>
+                            <li>Harvest prediction</li>
+                            <li>Yield estimation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🗺️</div>
+                        <h3>Land Management</h3>
+                        <p>Manage multiple farms with detailed mapping and location tracking.</p>
+                        <ul class="feature-list">
+                            <li>Interactive farm maps</li>
+                            <li>Soil quality analysis</li>
+                            <li>Land usage planning</li>
+                            <li>Boundary marking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💧</div>
+                        <h3>Irrigation Control</h3>
+                        <p>Automate and monitor irrigation systems for optimal water usage.</p>
+                        <ul class="feature-list">
+                            <li>Smart scheduling</li>
+                            <li>Water usage analytics</li>
+                            <li>Weather integration</li>
+                            <li>Remote control</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics & Insights -->
+            <section class="category-section">
+                <h2 class="category-title">Analytics & Insights</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Performance Analytics</h3>
+                        <p>Comprehensive dashboards with key metrics and performance indicators.</p>
+                        <ul class="feature-list">
+                            <li>Yield analysis</li>
+                            <li>Cost tracking</li>
+                            <li>Profit margin calculation</li>
+                            <li>Historical comparison</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🌤️</div>
+                        <h3>Weather Intelligence</h3>
+                        <p>Advanced weather forecasting and climate analysis for better planning.</p>
+                        <ul class="feature-list">
+                            <li>7-day forecasts</li>
+                            <li>Frost alerts</li>
+                            <li>Rainfall prediction</li>
+                            <li>Microclimate monitoring</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Market Insights</h3>
+                        <p>Stay informed about market prices, trends, and demand forecasts.</p>
+                        <ul class="feature-list">
+                            <li>Real-time price updates</li>
+                            <li>Market trend analysis</li>
+                            <li>Demand forecasting</li>
+                            <li>Competitor analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mobile & Automation -->
+            <section class="category-section">
+                <h2 class="category-title">Mobile & Automation</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Mobile App</h3>
+                        <p>Full-featured mobile application for on-the-go farm management.</p>
+                        <ul class="feature-list">
+                            <li>Offline mode available</li>
+                            <li>Photo documentation</li>
+                            <li>Quick task management</li>
+                            <li>Push notifications</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Task Automation</h3>
+                        <p>Automate routine tasks and receive smart reminders.</p>
+                        <ul class="feature-list">
+                            <li>Automated scheduling</li>
+                            <li>Smart reminders</li>
+                            <li>Workflow automation</li>
+                            <li>Team assignment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>IoT Integration</h3>
+                        <p>Connect and manage IoT devices for smart farming.</p>
+                        <ul class="feature-list">
+                            <li>Sensor integration</li>
+                            <li>Drone compatibility</li>
+                            <li>Equipment monitoring</li>
+                            <li>Automated reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VEDARA</h3>
+                    <p>Empowering farmers with technology for sustainable and profitable agriculture.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="how_it_works.html">How It Works</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="API.html">API Access</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="status.html">System Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Cookie Policy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Cookie Content */
+        .cookie-content {
+            padding: 40px 0 60px;
+        }
+        
+        .cookie-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f5e8;
+        }
+        
+        .cookie-point {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2d5016;
+        }
+        
+        .cookie-point h3 {
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        /* Cookie Table */
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .cookie-table th {
+            background: #e8f5e8;
+            padding: 15px;
+            text-align: left;
+            color: #2d5016;
+            font-weight: 600;
+            border: 1px solid #ddd;
+        }
+        
+        .cookie-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .cookie-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .cookie-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .type-essential {
+            background: #e8f5e8;
+            color: #2d5016;
+        }
+        
+        .type-analytics {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .type-functional {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        
+        /* Control Section */
+        .control-section {
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid #2d5016;
+        }
+        
+        .control-section h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .browser-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .browser-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .browser-item h4 {
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 50px 0 25px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .cookie-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .browser-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="privacy.html">Privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html" class="active">Cookies</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Cookie Policy</h1>
+            <p>Information about how we use cookies and similar technologies on VEDARA.</p>
+        </div>
+    </section>
+
+    <!-- Cookie Content -->
+    <div class="container">
+        <div class="cookie-content">
+            <!-- Introduction -->
+            <div class="cookie-section">
+                <div class="cookie-point">
+                    <h3>What Are Cookies?</h3>
+                    <p>Cookies are small text files placed on your device when you visit websites. They help websites remember information about your visit, which can make it easier to visit the site again and make the site more useful to you.</p>
+                </div>
+            </div>
+
+            <!-- Cookie Types -->
+            <div class="cookie-section">
+                <h2 class="section-title">Types of Cookies We Use</h2>
+                
+                <table class="cookie-table">
+                    <thead>
+                        <tr>
+                            <th>Cookie Type</th>
+                            <th>Purpose</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="cookie-type type-essential">Essential</span>
+                                <div style="margin-top: 5px;">Session Cookies</div>
+                            </td>
+                            <td>Required for basic site functionality, user authentication, and security features. These cannot be disabled.</td>
+                            <td>Session or up to 24 hours</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="cookie-type type-analytics">Analytics</span>
+                                <div style="margin-top: 5px;">Performance Cookies</div>
+                            </td>
+                            <td>Collect anonymous information about how visitors use our platform to help us improve user experience.</td>
+                            <td>Up to 2 years</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="cookie-type type-functional">Functional</span>
+                                <div style="margin-top: 5px;">Preference Cookies</div>
+                            </td>
+                            <td>Remember your settings and preferences, such as language preference or regional settings.</td>
+                            <td>Up to 1 year</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="cookie-point">
+                    <h3>Essential Cookies</h3>
+                    <p>These cookies are necessary for the website to function and cannot be switched off. They are usually only set in response to actions made by you, such as logging in or filling in forms.</p>
+                </div>
+                
+                <div class="cookie-point">
+                    <h3>Analytics Cookies</h3>
+                    <p>These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us know which pages are popular and how visitors move around the site.</p>
+                </div>
+            </div>
+
+            <!-- Cookie Management -->
+            <div class="cookie-section">
+                <h2 class="section-title">Managing Cookies</h2>
+                
+                <div class="cookie-point">
+                    <h3>Browser Controls</h3>
+                    <p>Most web browsers allow you to control cookies through their settings. You can set your browser to refuse cookies or delete certain cookies. However, disabling essential cookies may affect how our website functions.</p>
+                </div>
+                
+                <div class="control-section">
+                    <h3>Cookie Controls by Browser</h3>
+                    
+                    <div class="browser-controls">
+                        <div class="browser-item">
+                            <h4>Google Chrome</h4>
+                            <p>Settings → Privacy and security → Cookies and other site data</p>
+                        </div>
+                        
+                        <div class="browser-item">
+                            <h4>Mozilla Firefox</h4>
+                            <p>Preferences → Privacy & Security → Cookies and Site Data</p>
+                        </div>
+                        
+                        <div class="browser-item">
+                            <h4>Safari</h4>
+                            <p>Preferences → Privacy → Cookies and website data</p>
+                        </div>
+                        
+                        <div class="browser-item">
+                            <h4>Microsoft Edge</h4>
+                            <p>Settings → Cookies and site permissions → Cookies and site data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third-Party Cookies -->
+            <div class="cookie-section">
+                <h2 class="section-title">Third-Party Cookies</h2>
+                
+                <div class="cookie-point">
+                    <h3>Service Providers</h3>
+                    <p>We may use third-party services that set their own cookies to provide features like analytics, maps, or weather data. These providers have their own privacy policies and cookie practices.</p>
+                </div>
+                
+                <div class="cookie-point">
+                    <h3>Analytics Services</h3>
+                    <p>We use Google Analytics to understand how visitors interact with our platform. This service uses cookies to collect information about your use of VEDARA.</p>
+                </div>
+            </div>
+
+            <!-- Updates & Contact -->
+            <div class="cookie-section">
+                <div class="control-section">
+                    <h3>Cookie Preferences & Questions</h3>
+                    <p style="text-align: center; color: #666; margin-top: 10px;">
+                        For questions about our cookie policy or to manage your cookie preferences, contact us at privacy@vedara.com.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cookie Transparency</h3>
+                    <p>We believe in being transparent about our use of cookies and similar technologies. This policy explains how and why we use these technologies on VEDARA.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>User Control</h3>
+                    <p>We respect your right to control cookies. While essential cookies cannot be disabled without affecting functionality, you can control other cookie types through your browser settings.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Policy Updates</h3>
+                    <p>This cookie policy is reviewed regularly. Changes to our cookie practices will be reflected in updates to this policy, which are effective when posted on this page.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. Cookie policy version 2.0, effective January 2024.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

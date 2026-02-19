@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - System Status</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Status Overview */
+        .status-overview {
+            padding: 40px 0;
+        }
+        
+        .status-card {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 30px;
+            background: #e8f5e8;
+            border-radius: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .status-dot {
+            width: 14px;
+            height: 14px;
+            background: #2d5016;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .status-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d5016;
+        }
+        
+        .last-updated {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border: 2px solid #e8f5e8;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #2d5016;
+        }
+        
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .service-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2d5016;
+        }
+        
+        .service-status {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .status-operational {
+            background: #e8f5e8;
+            color: #2d5016;
+        }
+        
+        .status-degraded {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        
+        .service-details {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Incident History */
+        .incident-history {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #2d5016;
+            margin-bottom: 25px;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f5e8;
+        }
+        
+        .incident-list {
+            list-style: none;
+        }
+        
+        .incident-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .incident-item:last-child {
+            border-bottom: none;
+        }
+        
+        .incident-date {
+            min-width: 100px;
+            color: #2d5016;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .incident-details h4 {
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .incident-status {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #e8f5e8;
+            color: #2d5016;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 50px 0 25px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .status-card {
+                padding: 30px 20px;
+            }
+            
+            .incident-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="help.html">Help</a></li>
+                        <li><a href="status.html" class="active">Status</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>System Status</h1>
+            <p>Real-time status of VEDARA services and incident history.</p>
+        </div>
+    </section>
+
+    <!-- Status Overview -->
+    <div class="container">
+        <div class="status-overview">
+            <div class="status-card">
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span class="status-text">All Systems Operational</span>
+                </div>
+                <p class="last-updated">Last updated: January 20, 2025, 14:30 EAT</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-name">Web Platform</span>
+                        <span class="service-status status-operational">Operational</span>
+                    </div>
+                    <p class="service-details">Dashboard, farm management, and reporting tools.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-name">Mobile Apps</span>
+                        <span class="service-status status-operational">Operational</span>
+                    </div>
+                    <p class="service-details">iOS and Android applications for on-the-go access.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-name">API Services</span>
+                        <span class="service-status status-operational">Operational</span>
+                    </div>
+                    <p class="service-details">REST API for third-party integrations and data access.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-name">Weather Data</span>
+                        <span class="service-status status-operational">Operational</span>
+                    </div>
+                    <p class="service-details">Real-time weather forecasts and historical data.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-name">Market Data</span>
+                        <span class="service-status status-operational">Operational</span>
+                    </div>
+                    <p class="service-details">Commodity prices and market trend information.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-name">Notifications</span>
+                        <span class="service-status status-operational">Operational</span>
+                    </div>
+                    <p class="service-details">Email, SMS, and push notification delivery.</p>
+                </div>
+            </div>
+
+            <!-- Incident History -->
+            <div class="incident-history">
+                <h2 class="section-title">Recent Incidents</h2>
+                
+                <ul class="incident-list">
+                    <li class="incident-item">
+                        <div class="incident-date">Jan 15, 2021</div>
+                        <div class="incident-details">
+                            <h4>Scheduled Maintenance</h4>
+                            <p>API services were temporarily unavailable during scheduled database maintenance. All services restored by 04:00 EAT.</p>
+                            <span class="incident-status">Resolved</span>
+                        </div>
+                    </li>
+                    
+                    <li class="incident-item">
+                        <div class="incident-date">Jan 10, 2022</div>
+                        <div class="incident-details">
+                            <h4>Weather Data Delay</h4>
+                            <p>Weather forecast updates experienced a 2-hour delay due to upstream provider issues. No data loss occurred.</p>
+                            <span class="incident-status">Resolved</span>
+                        </div>
+                    </li>
+                    
+                    <li class="incident-item">
+                        <div class="incident-date">Dec 28, 2024</div>
+                        <div class="incident-details">
+                            <h4>Mobile App Update</h4>
+                            <p>iOS app version 2.4.1 released with bug fixes and performance improvements. Android update followed 24 hours later.</p>
+                            <span class="incident-status">Resolved</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Status Monitoring</h3>
+                    <p>Our systems are monitored 24/7 for performance and availability. Status updates are posted here during any service disruptions.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Update Frequency</h3>
+                    <p>Status information updates automatically every 5 minutes. Incident reports are posted within 15 minutes of detection.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Service Levels</h3>
+                    <p>VEDARA maintains 99.9% uptime for core services. Scheduled maintenance is announced 48 hours in advance.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. Status page updated automatically.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-update last updated time
+        function updateLastUpdated() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+            const formattedDate = now.toLocaleDateString('en-US', options) + ' EAT';
+            
+            const lastUpdatedElement = document.querySelector('.last-updated');
+            if (lastUpdatedElement) {
+                lastUpdatedElement.textContent = `Last updated: ${formattedDate}`;
+            }
+        }
+        
+        // Update every 5 minutes (300000 ms)
+        setInterval(updateLastUpdated, 300000);
+        
+        // Initial update
+        document.addEventListener('DOMContentLoaded', updateLastUpdated);
+    </script>
+</body>
+</html>

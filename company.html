@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Company Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a7d2e;
+            --primary-dark: #1e5a21;
+            --primary-light: #e8f5e9;
+            --secondary: #f9a825;
+            --dark: #1a331b;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e69500;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .user-info {
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--primary);
+            font-size: 32px;
+        }
+        
+        .user-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .user-role {
+            color: #2196f3;
+            font-weight: 600;
+            font-size: 14px;
+            background-color: rgba(33, 150, 243, 0.1);
+            padding: 4px 12px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+        
+        .company-info {
+            font-size: 12px;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        .nav-menu {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+        
+        .nav-item {
+            margin-bottom: 5px;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-right: 4px solid var(--primary);
+        }
+        
+        .nav-icon {
+            width: 24px;
+            margin-right: 12px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .notification-badge {
+            background-color: #ff4757;
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: auto;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .logout-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            color: #dc3545;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .logout-btn:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .page-title h1 {
+            font-size: 28px;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .page-title p {
+            color: var(--gray);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 24px;
+        }
+        
+        .stat-icon.blue {
+            background-color: rgba(33, 150, 243, 0.1);
+            color: #2196f3;
+        }
+        
+        .stat-icon.green {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+        
+        .stat-icon.orange {
+            background-color: rgba(255, 152, 0, 0.1);
+            color: #ff9800;
+        }
+        
+        .stat-icon.purple {
+            background-color: rgba(156, 39, 176, 0.1);
+            color: #9c27b0;
+        }
+        
+        .stat-info h3 {
+            font-size: 32px;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Available Farms Section */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-header h2 {
+            font-size: 22px;
+            color: var(--dark);
+        }
+        
+        .farms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .farm-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .farm-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .farm-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .farm-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .farm-status {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-ready {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-ai-verified {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .farm-details {
+            padding: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        
+        .detail-label {
+            width: 120px;
+            font-weight: 600;
+            color: var(--gray);
+        }
+        
+        .detail-value {
+            flex: 1;
+            color: var(--dark);
+        }
+        
+        .farm-actions {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid var(--light-gray);
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Orders Table */
+        .table-container {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .table-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .table-header h2 {
+            font-size: 22px;
+            color: var(--dark);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background-color: #f8f9fa;
+        }
+        
+        th {
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .order-status {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-processing {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-shipped {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-delivered {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        /* AI Validation Dashboard */
+        .ai-dashboard {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .ai-header h2 {
+            font-size: 22px;
+            color: var(--dark);
+        }
+        
+        .ai-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ai-metric {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .ai-metric h3 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .ai-metric p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Smart Contracts */
+        .contracts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .contract-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .contract-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .contract-details {
+            margin-bottom: 20px;
+        }
+        
+        .contract-detail {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 220px;
+            }
+            
+            .main-content {
+                margin-left: 220px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .farms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <a href="index.html" class="logo">VEDARA</a>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-building"></i>
+            </div>
+            <div class="user-name">Fresh Produce Ltd</div>
+            <div class="user-role">AGRIBUSINESS</div>
+            <div class="company-info">Procurement Manager</div>
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#dashboard" class="nav-link active">
+                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#farms" class="nav-link">
+                    <i class="fas fa-tractor nav-icon"></i>
+                    Available Farms
+                    <span class="notification-badge">12</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#orders" class="nav-link">
+                    <i class="fas fa-shopping-cart nav-icon"></i>
+                    My Orders
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#contracts" class="nav-link">
+                    <i class="fas fa-file-contract nav-icon"></i>
+                    Smart Contracts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#ai-validation" class="nav-link">
+                    <i class="fas fa-robot nav-icon"></i>
+                    AI Validation
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#supply-chain" class="nav-link">
+                    <i class="fas fa-truck-loading nav-icon"></i>
+                    Supply Chain
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#analytics" class="nav-link">
+                    <i class="fas fa-chart-bar nav-icon"></i>
+                    Analytics
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#payments" class="nav-link">
+                    <i class="fas fa-credit-card nav-icon"></i>
+                    Payments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#profile" class="nav-link">
+                    <i class="fas fa-user-cog nav-icon"></i>
+                    Company Profile
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="page-title">
+                <h1>Company Dashboard</h1>
+                <p>Manage your farm procurement, contracts, and supply chain</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="newOrderBtn">
+                    <i class="fas fa-plus"></i> New Procurement
+                </button>
+                <button class="btn" id="generateReportBtn">
+                    <i class="fas fa-download"></i> Export Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="availableFarms">24</h3>
+                    <p>Available Farms</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="activeContracts">8</h3>
+                    <p>Active Contracts</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="pendingOrders">5</h3>
+                    <p>Pending Orders</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="monthlySpend">KSh 1.2M</h3>
+                    <p>Monthly Spend</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Farms Section -->
+        <div class="section">
+            <div class="section-header">
+                <h2>AI-Verified Ready Farms</h2>
+                <button class="btn btn-outline" id="refreshFarmsBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh Farms
+                </button>
+            </div>
+            
+            <div class="farms-grid" id="availableFarmsGrid">
+                <!-- Farm cards will be generated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Recent Orders Table -->
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Recent Orders</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Farm</th>
+                        <th>Crop</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTable">
+                    <!-- Orders will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- AI Validation Dashboard -->
+        <div class="ai-dashboard">
+            <div class="ai-header">
+                <h2>AI Crop Validation Dashboard</h2>
+                <button class="btn btn-outline">
+                    <i class="fas fa-robot"></i> Run AI Analysis
+                </button>
+            </div>
+            
+            <div class="ai-metrics">
+                <div class="ai-metric">
+                    <h3>98%</h3>
+                    <p>Accuracy Rate</p>
+                </div>
+                <div class="ai-metric">
+                    <h3>24</h3>
+                    <p>Farms Analyzed</p>
+                </div>
+                <div class="ai-metric">
+                    <h3>15</h3>
+                    <p>Ready for Harvest</p>
+                </div>
+                <div class="ai-metric">
+                    <h3>7 days</h3>
+                    <p>Avg. Time Saved</p>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h3>Latest AI Validation Results</h3>
+            </div>
+            
+            <div class="contracts-container" id="aiResults">
+                <!-- AI results will be generated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Active Smart Contracts -->
+        <div class="section">
+            <div class="section-header">
+                <h2>Active Smart Contracts</h2>
+                <button class="btn btn-outline">
+                    <i class="fas fa-file-contract"></i> Create New Contract
+                </button>
+            </div>
+            
+            <div class="contracts-container" id="smartContracts">
+                <!-- Smart contracts will be generated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sample farm data
+        const availableFarms = [
+            {
+                id: 1,
+                name: "Green Valley Farm",
+                farmer: "James Mwangi",
+                crop: "Maize",
+                acres: 25,
+                location: "Kiambu",
+                yield: "12 tons",
+                aiScore: 98,
+                readiness: "Ready in 3 days",
+                price: "KSh 450,000",
+                status: "ready"
+            },
+            {
+                id: 2,
+                name: "Sunrise Coffee Estate",
+                farmer: "Sarah Ochieng",
+                crop: "Coffee",
+                acres: 15,
+                location: "Thika",
+                yield: "8 tons",
+                aiScore: 95,
+                readiness: "Ready now",
+                price: "KSh 320,000",
+                status: "ai-verified"
+            },
+            {
+                id: 3,
+                name: "Golden Fields Farm",
+                farmer: "Peter Kamau",
+                crop: "Wheat",
+                acres: 40,
+                location: "Nakuru",
+                yield: "25 tons",
+                aiScore: 92,
+                readiness: "Ready in 7 days",
+                price: "KSh 750,000",
+                status: "pending"
+            },
+            {
+                id: 4,
+                name: "River Side Farm",
+                farmer: "Mary Wanjiku",
+                crop: "Tomatoes",
+                acres: 10,
+                location: "Murang'a",
+                yield: "5 tons",
+                aiScore: 96,
+                readiness: "Ready now",
+                price: "KSh 350,000",
+                status: "ready"
+            }
+        ];
+
+        // Sample orders data
+        const recentOrders = [
+            {
+                id: "ORD-001",
+                farm: "Green Valley Farm",
+                crop: "Maize",
+                quantity: "10 tons",
+                amount: "KSh 450,000",
+                status: "delivered",
+                date: "2024-06-10"
+            },
+            {
+                id: "ORD-002",
+                farm: "Sunrise Coffee Estate",
+                crop: "Coffee",
+                quantity: "5 tons",
+                amount: "KSh 320,000",
+                status: "shipped",
+                date: "2024-06-12"
+            },
+            {
+                id: "ORD-003",
+                farm: "Highland Tea Plantation",
+                crop: "Tea",
+                quantity: "8 tons",
+                amount: "KSh 480,000",
+                status: "processing",
+                date: "2024-06-15"
+            },
+            {
+                id: "ORD-004",
+                farm: "Fruitful Harvest",
+                crop: "Avocado",
+                quantity: "3 tons",
+                amount: "KSh 210,000",
+                status: "delivered",
+                date: "2024-06-05"
+            }
+        ];
+
+        // Sample smart contracts
+        const smartContracts = [
+            {
+                id: "CT-001",
+                farm: "Green Valley Farm",
+                crop: "Maize",
+                amount: "KSh 450,000",
+                duration: "30 days",
+                status: "Active",
+                terms: "Harvest and delivery by June 30"
+            },
+            {
+                id: "CT-002",
+                farm: "Sunrise Coffee Estate",
+                crop: "Coffee",
+                amount: "KSh 320,000",
+                duration: "15 days",
+                status: "Active",
+                terms: "Quality grade AA, delivered to Nairobi"
+            }
+        ];
+
+        // Sample AI results
+        const aiResults = [
+            {
+                farm: "Green Valley Farm",
+                crop: "Maize",
+                maturity: "98%",
+                quality: "Grade A",
+                recommendation: "Harvest in 3 days",
+                confidence: "High"
+            },
+            {
+                farm: "River Side Farm",
+                crop: "Tomatoes",
+                maturity: "95%",
+                quality: "Grade AA",
+                recommendation: "Harvest now",
+                confidence: "Very High"
+            }
+        ];
+
+        // Generate farm cards
+        function generateFarmCards() {
+            const container = document.getElementById('availableFarmsGrid');
+            container.innerHTML = '';
+            
+            availableFarms.forEach(farm => {
+                const statusClass = `status-${farm.status}`;
+                const statusText = farm.status.replace('-', ' ');
+                
+                const farmCard = document.createElement('div');
+                farmCard.className = 'farm-card';
+                farmCard.innerHTML = `
+                    <div class="farm-header">
+                        <div class="farm-title">${farm.name}</div>
+                        <div class="farm-status ${statusClass}">${statusText.toUpperCase()}</div>
+                    </div>
+                    <div class="farm-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Farmer:</div>
+                            <div class="detail-value">${farm.farmer}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Crop:</div>
+                            <div class="detail-value">${farm.crop}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Acres:</div>
+                            <div class="detail-value">${farm.acres} acres</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Location:</div>
+                            <div class="detail-value">${farm.location}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Yield:</div>
+                            <div class="detail-value">${farm.yield}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">AI Score:</div>
+                            <div class="detail-value"><strong>${farm.aiScore}%</strong></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Readiness:</div>
+                            <div class="detail-value">${farm.readiness}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Price:</div>
+                            <div class="detail-value"><strong>${farm.price}</strong></div>
+                        </div>
+                    </div>
+                    <div class="farm-actions">
+                        <button class="btn" onclick="createOrder(${farm.id})">
+                            <i class="fas fa-cart-plus"></i> Create Order
+                        </button>
+                        <button class="btn btn-outline" onclick="viewFarmDetails(${farm.id})">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(farmCard);
+            });
+        }
+
+        // Generate orders table
+        function generateOrdersTable() {
+            const tbody = document.getElementById('ordersTable');
+            tbody.innerHTML = '';
+            
+            recentOrders.forEach(order => {
+                const statusClass = `status-${order.status}`;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${order.id}</strong></td>
+                    <td>${order.farm}</td>
+                    <td>${order.crop}</td>
+                    <td>${order.quantity}</td>
+                    <td><strong>${order.amount}</strong></td>
+                    <td><span class="order-status ${statusClass}">${order.status.toUpperCase()}</span></td>
+                    <td>
+                        <button class="btn btn-outline" onclick="trackOrder('${order.id}')" style="padding: 5px 10px; font-size: 12px;">
+                            <i class="fas fa-truck"></i> Track
+                        </button>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        // Generate smart contracts
+        function generateSmartContracts() {
+            const container = document.getElementById('smartContracts');
+            container.innerHTML = '';
+            
+            smartContracts.forEach(contract => {
+                const contractCard = document.createElement('div');
+                contractCard.className = 'contract-card';
+                contractCard.innerHTML = `
+                    <div class="contract-title">Contract ${contract.id}</div>
+                    <div class="contract-details">
+                        <div class="contract-detail"><strong>Farm:</strong> ${contract.farm}</div>
+                        <div class="contract-detail"><strong>Crop:</strong> ${contract.crop}</div>
+                        <div class="contract-detail"><strong>Amount:</strong> ${contract.amount}</div>
+                        <div class="contract-detail"><strong>Duration:</strong> ${contract.duration}</div>
+                        <div class="contract-detail"><strong>Status:</strong> <span style="color: var(--primary); font-weight: 600;">${contract.status}</span></div>
+                        <div class="contract-detail"><strong>Terms:</strong> ${contract.terms}</div>
+                    </div>
+                    <button class="btn btn-outline" onclick="viewContract('${contract.id}')" style="width: 100%;">
+                        <i class="fas fa-file-contract"></i> View Contract
+                    </button>
+                `;
+                
+                container.appendChild(contractCard);
+            });
+        }
+
+        // Generate AI results
+        function generateAIResults() {
+            const container = document.getElementById('aiResults');
+            container.innerHTML = '';
+            
+            aiResults.forEach(result => {
+                const resultCard = document.createElement('div');
+                resultCard.className = 'contract-card';
+                resultCard.style.borderLeftColor = '#4caf50';
+                resultCard.innerHTML = `
+                    <div class="contract-title">${result.farm}</div>
+                    <div class="contract-details">
+                        <div class="contract-detail"><strong>Crop:</strong> ${result.crop}</div>
+                        <div class="contract-detail"><strong>Maturity:</strong> <span style="color: #4caf50; font-weight: 600;">${result.maturity}</span></div>
+                        <div class="contract-detail"><strong>Quality:</strong> ${result.quality}</div>
+                        <div class="contract-detail"><strong>AI Recommendation:</strong> ${result.recommendation}</div>
+                        <div class="contract-detail"><strong>Confidence:</strong> ${result.confidence}</div>
+                    </div>
+                    <button class="btn btn-outline" onclick="viewAIReport('${result.farm}')" style="width: 100%;">
+                        <i class="fas fa-chart-line"></i> View Full Report
+                    </button>
+                `;
+                
+                container.appendChild(resultCard);
+            });
+        }
+
+        // Initialize dashboard
+        function initDashboard() {
+            generateFarmCards();
+            generateOrdersTable();
+            generateSmartContracts();
+            generateAIResults();
+            
+            // Update stats
+            document.getElementById('availableFarms').textContent = availableFarms.length;
+            document.getElementById('activeContracts').textContent = smartContracts.length;
+            document.getElementById('pendingOrders').textContent = recentOrders.filter(o => o.status === 'processing').length;
+        }
+
+        // Action functions
+        function createOrder(farmId) {
+            const farm = availableFarms.find(f => f.id === farmId);
+            if (farm) {
+                if (confirm(`Create order for:\n\n${farm.name}\nCrop: ${farm.crop}\nYield: ${farm.yield}\nPrice: ${farm.price}`)) {
+                    alert(`Order created successfully!\n\nContract will be generated and sent to ${farm.farmer} for approval.`);
+                    // In a real app, this would send data to backend
+                }
+            }
+        }
+
+        function viewFarmDetails(farmId) {
+            const farm = availableFarms.find(f => f.id === farmId);
+            if (farm) {
+                alert(`Farm Details:\n\n` +
+                      `Name: ${farm.name}\n` +
+                      `Farmer: ${farm.farmer}\n` +
+                      `Location: ${farm.location}\n` +
+                      `Crop: ${farm.crop}\n` +
+                      `Acres: ${farm.acres}\n` +
+                      `Yield: ${farm.yield}\n` +
+                      `AI Score: ${farm.aiScore}%\n` +
+                      `Readiness: ${farm.readiness}\n` +
+                      `Price: ${farm.price}\n\n` +
+                      `This would show detailed farm information including location map.`);
+            }
+        }
+
+        function trackOrder(orderId) {
+            const order = recentOrders.find(o => o.id === orderId);
+            if (order) {
+                alert(`Tracking Order: ${orderId}\n\n` +
+                      `Farm: ${order.farm}\n` +
+                      `Status: ${order.status}\n` +
+                      `Estimated Delivery: ${order.date}\n\n` +
+                      `This would show real-time GPS tracking and delivery updates.`);
+            }
+        }
+
+        function viewContract(contractId) {
+            const contract = smartContracts.find(c => c.id === contractId);
+            if (contract) {
+                alert(`Smart Contract: ${contractId}\n\n` +
+                      `Farm: ${contract.farm}\n` +
+                      `Crop: ${contract.crop}\n` +
+                      `Amount: ${contract.amount}\n` +
+                      `Duration: ${contract.duration}\n` +
+                      `Terms: ${contract.terms}\n\n` +
+                      `This would open the full smart contract with digital signature verification.`);
+            }
+        }
+
+        function viewAIReport(farmName) {
+            const result = aiResults.find(r => r.farm === farmName);
+            if (result) {
+                alert(`AI Validation Report: ${farmName}\n\n` +
+                      `Crop: ${result.crop}\n` +
+                      `Maturity Score: ${result.maturity}\n` +
+                      `Quality Grade: ${result.quality}\n` +
+                      `Recommendation: ${result.recommendation}\n` +
+                      `Confidence Level: ${result.confidence}\n\n` +
+                      `This would show detailed AI analysis including satellite imagery and crop health data.`);
+            }
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Get the target section
+                const targetId = this.getAttribute('href').substring(1);
+                
+                // Show appropriate section (simplified for demo)
+                alert(`Loading ${targetId.replace('-', ' ')} section...\nIn a full implementation, this would load different dashboard views.`);
+            });
+        });
+        // Button actions
+        document.getElementById('newOrderBtn').addEventListener('click', function() {
+            alert('Opening new procurement form...\n\nThis would allow you to specify crop requirements, quantity, and delivery preferences.');
+        });
+
+        document.getElementById('generateReportBtn').addEventListener('click', function() {
+            alert('Generating procurement report...\n\nReport would include:\n- Monthly spend analysis\n- Farm performance metrics\n- Supply chain efficiency\n- AI validation statistics');
+        });
+
+        document.getElementById('refreshFarmsBtn').addEventListener('click', function() {
+            alert('Refreshing available farms...\n\nFetching latest AI-verified farms from the network.');
+            // In real app, this would fetch from API
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                alert('Logging out...');
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Initialize dashboard when page loads
+        window.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+</html>

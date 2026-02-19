@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3a661d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 80, 22, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #2d5016;
+            border: 2px solid #2d5016;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2d5016;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Community Features */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #2d5016;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            background: #e8f5e8;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #2d5016;
+        }
+        
+        .feature-content {
+            padding: 25px;
+        }
+        
+        .feature-content h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        /* Community Forums */
+        .forums {
+            padding: 60px 0;
+            background: #f9f9f9;
+        }
+        
+        .forums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .forum-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .forum-title {
+            color: #2d5016;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .forum-stats {
+            background: #e8f5e8;
+            color: #2d5016;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .forum-topics {
+            margin-top: 15px;
+        }
+        
+        .topic-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .topic-item:last-child {
+            border-bottom: none;
+        }
+        
+        .topic-title {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .topic-count {
+            color: #2d5016;
+            font-weight: 600;
+        }
+        
+        /* Events Section */
+        .events {
+            padding: 80px 0;
+        }
+        
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #2d5016;
+        }
+        
+        .event-date {
+            background: #2d5016;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .event-date .day {
+            font-size: 32px;
+            font-weight: 800;
+            display: block;
+        }
+        
+        .event-date .month {
+            font-size: 16px;
+            display: block;
+        }
+        
+        .event-content {
+            padding: 25px;
+        }
+        
+        .event-title {
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .event-meta {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .event-meta i {
+            margin-right: 5px;
+            color: #2d5016;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin: 0 20px;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #e8f5e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d5016;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .author-info h4 {
+            color: #2d5016;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2d5016 0%, #3a661d 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .btn-cta-primary {
+            background-color: white;
+            color: #2d5016;
+        }
+        
+        .btn-cta-primary:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .btn-cta-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-cta-secondary:hover {
+            background-color: white;
+            color: #2d5016;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 50px 0 25px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: #2d5016;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-buttons, .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            .features-grid, .forums-grid, .events-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="privacy.html">Privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookie.html">Cookies</a></li>
+                        <li><a href="community.html" class="active">Community</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>VEDARA Community</h1>
+            <p>Connect with fellow farmers, share knowledge, and grow together with VEDARA AgriTech Community.</p>
+            <div class="hero-buttons">
+                <a href="dashboard.html" class="btn btn-primary">Join Community</a>
+                <a href="#forums" class="btn btn-secondary">Browse Forums</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Community Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>🌱</i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Expert Forums</h3>
+                        <p>Connect with agricultural experts, ask questions, and get advice on crop management, pest control, and sustainable farming practices.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>🤝</i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Local Farmer Groups</h3>
+                        <p>Find and join local farming communities, share regional insights, and collaborate with farmers in your area.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>📚</i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Knowledge Base</h3>
+                        <p>Access a growing library of farmer-contributed guides, success stories, and troubleshooting articles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Forums -->
+    <section class="forums" id="forums">
+        <div class="container">
+            <h2 class="section-title">Active Community Forums</h2>
+            
+            <div class="forums-grid">
+                <div class="forum-card">
+                    <div class="forum-header">
+                        <div class="forum-title">Crop Management</div>
+                        <div class="forum-stats">1.2K Topics</div>
+                    </div>
+                    <p>Discuss best practices for growing various crops, soil health, irrigation techniques, and yield optimization.</p>
+                    <div class="forum-topics">
+                        <div class="topic-item">
+                            <span class="topic-title">Organic pest control methods</span>
+                            <span class="topic-count">245</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-title">Crop rotation strategies</span>
+                            <span class="topic-count">189</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-title">Irrigation system recommendations</span>
+                            <span class="topic-count">312</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="forum-card">
+                    <div class="forum-header">
+                        <div class="forum-title">Marketplace</div>
+                        <div class="forum-stats">850 Topics</div>
+                    </div>
+                    <p>Buy, sell, or trade farm equipment, seeds, and produce. Discuss market trends and pricing strategies.</p>
+                    <div class="forum-topics">
+                        <div class="topic-item">
+                            <span class="topic-title">Used equipment for sale</span>
+                            <span class="topic-count">156</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-title">Organic certification process</span>
+                            <span class="topic-count">89</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-title">Direct-to-consumer marketing</span>
+                            <span class="topic-count">203</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="forum-card">
+                    <div class="forum-header">
+                        <div class="forum-title">Sustainable Farming</div>
+                        <div class="forum-stats">950 Topics</div>
+                    </div>
+                    <p>Share and learn about sustainable agriculture practices, renewable energy, and environmental stewardship.</p>
+                    <div class="forum-topics">
+                        <div class="topic-item">
+                            <span class="topic-title">Solar power for farms</span>
+                            <span class="topic-count">145</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-title">Water conservation techniques</span>
+                            <span class="topic-count">278</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-title">Regenerative agriculture</span>
+                            <span class="topic-count">167</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Community Events</h2>
+            
+            <div class="events-container">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">15</span>
+                        <span class="month">March 2024</span>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Organic Farming Workshop</h3>
+                        <p>Learn about organic certification, natural pest control, and soil health management from industry experts.</p>
+                        <div class="event-meta">
+                            <div><i>📍</i> Online</div>
+                            <div><i>⏰</i> 2:00 PM EST</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">22</span>
+                        <span class="month">March 2024</span>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Farm Tech Showcase</h3>
+                        <p>Discover the latest agricultural technology innovations and how they can improve your farm's efficiency.</p>
+                        <div class="event-meta">
+                            <div><i>📍</i> Virtual Conference</div>
+                            <div><i>⏰</i> 10:00 AM EST</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">05</span>
+                        <span class="month">April 2024</span>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Regional Farmer Meetup</h3>
+                        <p>Connect with farmers in your region, share experiences, and discuss local agricultural challenges.</p>
+                        <div class="event-meta">
+                            <div><i>📍</i> Multiple Locations</div>
+                            <div><i>⏰</i> All Day</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Community Says</h2>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "The VEDARA community helped me transition to organic farming. The advice I received saved me thousands and improved my soil health dramatically."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Maria Rodriguez</h4>
+                            <p>Organic Farmer, California</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="join">
+        <div class="container">
+            <h2>Join Our Growing Community</h2>
+            <p>Connect with thousands of farmers, share your experiences, and access exclusive resources to help your farm thrive.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-cta-primary">Sign Up Free</a>
+                <a href="#" class="btn btn-cta-secondary">Take a Tour</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VEDARA Community</h3>
+                    <p>Join our growing network of farmers and agricultural professionals. Share knowledge, solve problems, and grow together.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">yt</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Community Guidelines</h3>
+                    <p>We foster a respectful and supportive environment. All members are expected to follow our community guidelines and contribute positively.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Get Involved</h3>
+                    <p>Become a community moderator, contribute to our knowledge base, or help organize local meetups. Contact us to learn more.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. Community page version 1.0. Connect, Share, Grow.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA · Farmer Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        .logo {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2d5016;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+        }
+        
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .card-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 24px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+        
+        .tab.active {
+            color: #2d5016;
+            border-bottom: 2px solid #2d5016;
+        }
+        
+        .form-container {
+            display: none;
+        }
+        
+        .form-container.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #2d5016;
+            box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
+        }
+        
+        .input-feedback {
+            font-size: 13px;
+            margin-top: 4px;
+            min-height: 18px;
+            color: #c62828;
+            transition: 0.1s;
+        }
+        
+        .password-note {
+            font-size: 12px;
+            color: #5f5f5f;
+            margin-top: 4px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #2d5016;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #3a6c1e;
+        }
+
+        .btn:active {
+            transform: scale(0.99);
+        }
+        
+        .action-link {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+            color: #2d5016;
+            cursor: pointer;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            display: inline-block;
+            width: auto;
+            padding: 4px 8px;
+        }
+        
+        .action-link:hover {
+            color: #3a6c1e;
+            text-decoration: none;
+        }
+
+        .feedback-banner {
+            background-color: #e8f5e9;
+            color: #1f3b0e;
+            padding: 10px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            border-left: 4px solid #2d5016;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .feedback-banner.error {
+            background-color: #ffebee;
+            border-left-color: #b71c1c;
+            color: #891515;
+        }
+
+        .close-feedback {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: inherit;
+            padding: 0 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">VEDARA</div>
+        
+        <div class="card">
+            <h1 class="card-title">Farmer Dashboard Access</h1>
+            <p class="card-subtitle">Sign in to manage your farms and crops</p>
+
+            <!-- unified feedback area (no popups) -->
+            <div id="liveFeedback" class="feedback-banner" style="display: none;"></div>
+            
+            <div class="tabs">
+                <button class="tab active" data-tab="login">Login</button>
+                <button class="tab" data-tab="signup">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="form-container active">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="text" class="form-input" id="login-email" placeholder="farmer@example.com">
+                    <div id="login-email-feedback" class="input-feedback"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="login-password" placeholder="Enter your password">
+                    <div id="login-password-feedback" class="input-feedback"></div>
+                </div>
+                
+                <button class="btn" id="login-btn">Sign In</button>
+                
+                <button class="action-link" id="show-reset" style="margin-top: 16px;">Forgot Password? Reset here</button>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signup-form" class="form-container">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="signup-name" placeholder="Graham Bell">
+                    <div id="signup-name-feedback" class="input-feedback"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="signup-email" placeholder="farmer@example.com">
+                    <div id="signup-email-feedback" class="input-feedback"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="signup-password" placeholder="Enter your password">
+                    <div class="password-note">Min. 6 characters</div>
+                    <div id="signup-password-feedback" class="input-feedback"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">User type</label>
+                    <input type="text" class="form-input" id="signup-user" placeholder="e.g., farmer, contractor, company">
+                    <div id="signup-user-feedback" class="input-feedback"></div>
+                </div>
+                
+                <button class="btn" id="signup-btn">Create Account</button>
+            </div>
+            
+            <!-- Reset Password Form -->
+            <div id="reset-form" class="form-container">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="text" class="form-input" id="reset-email" placeholder="farmer@example.com">
+                    <div id="reset-email-feedback" class="input-feedback"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-input" id="reset-password" placeholder="Enter new password">
+                    <div class="password-note">Min. 6 characters</div>
+                    <div id="reset-password-feedback" class="input-feedback"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-input" id="reset-confirm-password" placeholder="Confirm new password">
+                    <div id="reset-confirm-feedback" class="input-feedback"></div>
+                </div>
+                
+                <button class="btn" id="reset-btn">Reset Password</button>
+                
+                <button class="action-link" id="back-to-login">← Back to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ----- UI elements -----
+            const tabs = document.querySelectorAll('.tab');
+            const forms = document.querySelectorAll('.form-container');
+            const liveFeedback = document.getElementById('liveFeedback');
+            
+            // helper: show banner message (non‑popup)
+            function showBanner(message, isError = false) {
+                liveFeedback.style.display = 'flex';
+                liveFeedback.textContent = message;
+                liveFeedback.className = 'feedback-banner' + (isError ? ' error' : '');
+                // optional close button (X) — we can add but keep it simple: auto-hide after 5 sec? 
+                // but requirement: no popups, banner stays until next action. provide close ability.
+                if (!liveFeedback.querySelector('.close-feedback')) {
+                    const closeBtn = document.createElement('span');
+                    closeBtn.textContent = '✕';
+                    closeBtn.className = 'close-feedback';
+                    closeBtn.setAttribute('aria-label', 'Close');
+                    closeBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        liveFeedback.style.display = 'none';
+                    };
+                    liveFeedback.innerHTML = ''; // clear if any
+                    liveFeedback.appendChild(document.createTextNode(message));
+                    liveFeedback.appendChild(closeBtn);
+                } else {
+                    // update text, keep close button
+                    const close = liveFeedback.querySelector('.close-feedback');
+                    liveFeedback.innerHTML = '';
+                    liveFeedback.appendChild(document.createTextNode(message));
+                    liveFeedback.appendChild(close);
+                }
+            }
+
+            function hideBanner() {
+                liveFeedback.style.display = 'none';
+            }
+
+            // clear all field-specific feedbacks
+            function clearAllFeedbacks() {
+                document.querySelectorAll('.input-feedback').forEach(el => el.innerText = '');
+            }
+
+            // ---------- TAB SWITCHING ----------
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // show correct form
+                    forms.forEach(form => form.classList.remove('active'));
+                    document.getElementById(`${tabId}-form`).classList.add('active');
+                    
+                    // hide any banner, clear feedbacks
+                    hideBanner();
+                    clearAllFeedbacks();
+                });
+            });
+            
+            // ---------- SHOW RESET (from login) ----------
+            document.getElementById('show-reset').addEventListener('click', () => {
+                // reset form fields later maybe, but hide banners
+                forms.forEach(form => form.classList.remove('active'));
+                tabs.forEach(t => t.classList.remove('active'));   // no tab active for reset
+                document.getElementById('reset-form').classList.add('active');
+                hideBanner();
+                clearAllFeedbacks();
+            });
+            
+            // ---------- BACK TO LOGIN (from reset) ----------
+            document.getElementById('back-to-login').addEventListener('click', () => {
+                forms.forEach(form => form.classList.remove('active'));
+                tabs.forEach(t => t.classList.remove('active'));
+                document.querySelector('.tab[data-tab="login"]').classList.add('active');
+                document.getElementById('login-form').classList.add('active');
+                hideBanner();
+                clearAllFeedbacks();
+            });
+            
+            // ---------- HELPER: VALIDATION (no popups) ----------
+            function validateLogin() {
+                const email = document.getElementById('login-email').value.trim();
+                const pass = document.getElementById('login-password').value;
+                let isValid = true;
+
+                const emailFb = document.getElementById('login-email-feedback');
+                const passFb = document.getElementById('login-password-feedback');
+                emailFb.innerText = '';
+                passFb.innerText = '';
+
+                if (!email) {
+                    emailFb.innerText = 'Email is required.';
+                    isValid = false;
+                } else if (!email.includes('@') || !email.includes('.')) {
+                    emailFb.innerText = 'Enter a valid email.';
+                    isValid = false;
+                }
+
+                if (!pass) {
+                    passFb.innerText = 'Password cannot be empty.';
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function validateSignup() {
+                const name = document.getElementById('signup-name').value.trim();
+                const email = document.getElementById('signup-email').value.trim();
+                const pass = document.getElementById('signup-password').value;
+                const user = document.getElementById('signup-user').value.trim();
+
+                const nameFb = document.getElementById('signup-name-feedback');
+                const emailFb = document.getElementById('signup-email-feedback');
+                const passFb = document.getElementById('signup-password-feedback');
+                const userFb = document.getElementById('signup-user-feedback');
+                
+                nameFb.innerText = emailFb.innerText = passFb.innerText = userFb.innerText = '';
+
+                let ok = true;
+                if (!name) { nameFb.innerText = 'Full name required.'; ok = false; }
+                if (!email) { emailFb.innerText = 'Email required.'; ok = false; }
+                else if (!email.includes('@')) { emailFb.innerText = 'Invalid email.'; ok = false; }
+                if (!pass) { passFb.innerText = 'Password required.'; ok = false; }
+                else if (pass.length < 6) { passFb.innerText = 'Minimum 6 characters.'; ok = false; }
+                if (!user) { userFb.innerText = 'User type required.'; ok = false; }
+                return ok;
+            }
+
+            function validateReset() {
+                const email = document.getElementById('reset-email').value.trim();
+                const pass = document.getElementById('reset-password').value;
+                const confirm = document.getElementById('reset-confirm-password').value;
+
+                const emailFb = document.getElementById('reset-email-feedback');
+                const passFb = document.getElementById('reset-password-feedback');
+                const confFb = document.getElementById('reset-confirm-feedback');
+
+                emailFb.innerText = passFb.innerText = confFb.innerText = '';
+                let ok = true;
+
+                if (!email) { emailFb.innerText = 'Email required.'; ok = false; }
+                else if (!email.includes('@')) { emailFb.innerText = 'Invalid email.'; ok = false; }
+                if (!pass) { passFb.innerText = 'New password required.'; ok = false; }
+                else if (pass.length < 6) { passFb.innerText = 'Min 6 characters.'; ok = false; }
+                if (pass !== confirm) { confFb.innerText = 'Passwords do not match.'; ok = false; }
+
+                return ok;
+            }
+
+            // ---------- LOGIN BUTTON ----------
+            document.getElementById('login-btn').addEventListener('click', () => {
+                if (!validateLogin()) return;
+
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value;
+
+                // success banner with confirmation, no popup
+                showBanner(`✅ Welcome back! You are now logged in as ${email}.`, false);
+                // (optional) clear fields for demo? we keep them visible
+                // document.getElementById('login-password').value = ''; // but might be confusing
+            });
+
+            // ---------- SIGNUP BUTTON ----------
+            document.getElementById('signup-btn').addEventListener('click', () => {
+                if (!validateSignup()) return;
+
+                const name = document.getElementById('signup-name').value.trim();
+                const email = document.getElementById('signup-email').value.trim();
+                const user = document.getElementById('signup-user').value.trim();
+
+                showBanner(`🎉 Account created for ${name} (${email}) – type: ${user}. You can now log in.`, false);
+
+                // Optional: auto‑switch to login after a moment? not required, but better UX:
+                // we can keep banner, and user can click login tab manually.
+                // We also keep signup fields filled.
+            });
+
+            // ---------- RESET BUTTON ----------
+            document.getElementById('reset-btn').addEventListener('click', () => {
+                if (!validateReset()) return;
+
+                const email = document.getElementById('reset-email').value.trim();
+                // simulate reset success
+                showBanner(`🔐 Password reset successfully for ${email}. You can now log in with new password.`, false);
+
+                // automatically return to login after small delay? but no popup, so maybe allow manual.
+                // Provide a direct link? we have "Back to login" but also we can programmatically after 2 seconds? not to annoy
+                // Buttons: we keep as is, user clicks back to login manually. 
+                // However we do reset fields (except email) to avoid confusion
+                document.getElementById('reset-password').value = '';
+                document.getElementById('reset-confirm-password').value = '';
+                // clear feedbacks
+                clearAllFeedbacks();
+            });
+
+            // ---------- small: clicking anywhere on banner close? we already added close button on showBanner.
+            // Additional: hide banner when switching tabs, already done.
+
+            // If the banner is empty on initialization, keep hidden.
+            // Also, we want no popups at all, already using banner + inline feedback.
+
+            // Additionally, if the user types, we can optionally clear field errors, but not necessary
+            // Provide extra behaviour: clear field feedback on input
+            const allInputs = document.querySelectorAll('.form-input');
+            allInputs.forEach(inp => {
+                inp.addEventListener('input', function() {
+                    // find sibling feedback for this field (inside same form-group)
+                    const parent = this.closest('.form-group');
+                    if (parent) {
+                        const feedback = parent.querySelector('.input-feedback');
+                        if (feedback) feedback.innerText = '';
+                    }
+                    // also optionally hide global banner when user starts typing
+                    // but banner may stay; we can keep.
+                });
+            });
+
+            // optional: pressing enter triggers corresponding button (nice UX)
+            function triggerButtonOnEnter(inputId, btnId) {
+                document.querySelector(inputId).addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.querySelector(btnId).click();
+                    }
+                });
+            }
+            // login enter
+            document.getElementById('login-password').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); document.getElementById('login-btn').click(); }
+            });
+            document.getElementById('signup-password').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); document.getElementById('signup-btn').click(); }
+            });
+            document.getElementById('reset-confirm-password').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); document.getElementById('reset-btn').click(); }
+            });
+        })();
+    </script>
+</body>
+</html>

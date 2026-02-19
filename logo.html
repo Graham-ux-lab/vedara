@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA Logo - Option 1</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 50px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .logo-container {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        /* Logo Option 1: Modern Abstract */
+        .logo-1 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+        
+        .logo-symbol-1 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%);
+            border-radius: 15px;
+            position: relative;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-symbol-1::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            transform: rotate(-45deg);
+        }
+        
+        .logo-symbol-1::after {
+            content: '🌱';
+            position: absolute;
+            font-size: 20px;
+            transform: rotate(-45deg);
+            color: #2d5016;
+        }
+        
+        .logo-text-1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #2d5016;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        .logo-text-1::after {
+            content: 'AgriTech';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a7c2a;
+            letter-spacing: 1px;
+        }
+        
+        /* Logo Option 2: Leaf Inspired */
+        .logo-2 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+        
+        .logo-symbol-2 {
+            width: 70px;
+            height: 70px;
+            position: relative;
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background: #2d5016;
+            border-radius: 50% 0;
+            transform: rotate(45deg);
+        }
+        
+        .leaf::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 30px;
+            background: #4a7c2a;
+            border-radius: 50% 0;
+            top: 5px;
+            left: 5px;
+        }
+        
+        .leaf::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 25px;
+            background: #3a661d;
+            bottom: -15px;
+            left: 25px;
+            border-radius: 5px;
+        }
+        
+        .logo-text-2 {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1.5px;
+        }
+        
+        /* Logo Option 3: Circle Badge */
+        .logo-3 {
+            margin-top: 50px;
+        }
+        
+        .badge-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .badge {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2d5016 0%, #3a661d 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .badge::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .badge::after {
+            content: 'V';
+            position: absolute;
+            font-size: 32px;
+            font-weight: 900;
+            color: #2d5016;
+        }
+        
+        .badge-text {
+            font-size: 44px;
+            font-weight: 800;
+            color: #2d5016;
+            position: relative;
+        }
+        
+        .badge-text span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #4a7c2a;
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+        }
+        
+        /* Usage Examples */
+        .examples {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .example-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .example-card h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+        }
+        
+        .example-header {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background: #1a1a1a;
+            color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+        
+        .instructions {
+            max-width: 800px;
+            text-align: center;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        .instructions h2 {
+            color: #2d5016;
+            margin-bottom: 20px;
+        }
+        
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .color-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+        
+        .color-1 { background: #2d5016; }
+        .color-2 { background: #3a661d; }
+        .color-3 { background: #4a7c2a; }
+        .color-4 { background: #e8f5e8; }
+        
+        .download-btn {
+            background: #2d5016;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: #3a661d;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h2>VEDARA Logo Collection</h2>
+        <p>Choose from three professional logo designs for your AgriTech website. Each logo uses your brand colors and represents growth, technology, and agriculture.</p>
+        
+        <div class="color-palette">
+            <div class="color-box color-1"></div>
+            <div class="color-box color-2"></div>
+            <div class="color-box color-3"></div>
+            <div class="color-box color-4"></div>
+        </div>
+    </div>
+
+    <div class="logo-container">
+        <!-- Logo Option 1 -->
+        <div class="logo-1">
+            <div class="logo-symbol-1"></div>
+            <div class="logo-text-1">VEDARA</div>
+        </div>
+        
+        <!-- Logo Option 2 -->
+        <div class="logo-2">
+            <div class="logo-symbol-2">
+                <div class="leaf"></div>
+            </div>
+            <div class="logo-text-2">VEDARA</div>
+        </div>
+        
+        <!-- Logo Option 3 -->
+        <div class="logo-3">
+            <div class="badge-logo">
+                <div class="badge"></div>
+                <div class="badge-text">VEDARA<span>AgriTech</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="examples">
+        <div class="example-card">
+            <h3>Usage in Header</h3>
+            <div class="example-header">
+                <div class="logo-1" style="transform: scale(0.8);">
+                    <div class="logo-symbol-1"></div>
+                    <div class="logo-text-1">VEDARA</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;!-- Logo 1 HTML --&gt;<br>
+&lt;div class="logo-1"&gt;<br>
+&nbsp;&nbsp;&lt;div class="logo-symbol-1"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="logo-text-1"&gt;VEDARA&lt;/div&gt;<br>
+&lt;/div&gt;
+            </div>
+            <button class="download-btn" onclick="selectLogo(1)">Select Logo 1</button>
+        </div>
+        
+        <div class="example-card">
+            <h3>Usage in Footer</h3>
+            <div class="example-header">
+                <div class="logo-2" style="transform: scale(0.7);">
+                    <div class="logo-symbol-2">
+                        <div class="leaf"></div>
+                    </div>
+                    <div class="logo-text-2">VEDARA</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;!-- Logo 2 HTML --&gt;<br>
+&lt;div class="logo-2"&gt;<br>
+&nbsp;&nbsp;&lt;div class="logo-symbol-2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="leaf"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="logo-text-2"&gt;VEDARA&lt;/div&gt;<br>
+&lt;/div&gt;
+            </div>
+            <button class="download-btn" onclick="selectLogo(2)">Select Logo 2</button>
+        </div>
+        
+        <div class="example-card">
+            <h3>Usage as Badge</h3>
+            <div class="example-header">
+                <div class="badge-logo" style="transform: scale(0.8);">
+                    <div class="badge"></div>
+                    <div class="badge-text">VEDARA<span>AgriTech</span></div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;!-- Logo 3 HTML --&gt;<br>
+&lt;div class="badge-logo"&gt;<br>
+&nbsp;&nbsp;&lt;div class="badge"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="badge-text"&gt;VEDARA&lt;span&gt;AgriTech&lt;/span&gt;&lt;/div&gt;<br>
+&lt;/div&gt;
+            </div>
+            <button class="download-btn" onclick="selectLogo(3)">Select Logo 3</button>
+        </div>
+    </div>
+    
+    <script>
+        function selectLogo(option) {
+            alert(`Logo ${option} selected! The CSS is already included in this page. Copy the HTML and CSS for the selected logo.`);
+            
+            // Generate downloadable HTML file
+            const logoHtml = generateLogoHTML(option);
+            const css = generateLogoCSS(option);
+            
+            const blob = new Blob([`<!DOCTYPE html>
+<html>
+<head>
+<style>${css}</style>
+</head>
+<body>
+${logoHtml}
+</body>
+</html>`], { type: 'text/html' });
+            
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `vedara-logo-${option}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function generateLogoHTML(option) {
+            switch(option) {
+                case 1:
+                    return `<div class="logo-1">
+    <div class="logo-symbol-1"></div>
+    <div class="logo-text-1">VEDARA</div>
+</div>`;
+                case 2:
+                    return `<div class="logo-2">
+    <div class="logo-symbol-2">
+        <div class="leaf"></div>
+    </div>
+    <div class="logo-text-2">VEDARA</div>
+</div>`;
+                case 3:
+                    return `<div class="badge-logo">
+    <div class="badge"></div>
+    <div class="badge-text">VEDARA<span>AgriTech</span></div>
+</div>`;
+            }
+        }
+        
+        function generateLogoCSS(option) {
+            let css = `* { margin: 0; padding: 0; box-sizing: border-box; }
+body { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f5f5f5; }`;
+            
+            switch(option) {
+                case 1:
+                    css += `.logo-1 { display: flex; align-items: center; gap: 15px; }
+.logo-symbol-1 { width: 60px; height: 60px; background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%); border-radius: 15px; position: relative; transform: rotate(45deg); }
+.logo-symbol-1::before { content: ''; position: absolute; width: 40px; height: 40px; background: white; border-radius: 8px; transform: rotate(-45deg); }
+.logo-symbol-1::after { content: '🌱'; position: absolute; font-size: 20px; transform: rotate(-45deg); color: #2d5016; }
+.logo-text-1 { font-size: 42px; font-weight: 800; color: #2d5016; letter-spacing: 2px; position: relative; font-family: 'Segoe UI', sans-serif; }
+.logo-text-1::after { content: 'AgriTech'; position: absolute; bottom: -20px; left: 0; font-size: 14px; font-weight: 600; color: #4a7c2a; letter-spacing: 1px; }`;
+                    break;
+                case 2:
+                    css += `.logo-2 { display: flex; align-items: center; gap: 15px; }
+.logo-symbol-2 { width: 70px; height: 70px; position: relative; }
+.leaf { position: absolute; width: 60px; height: 40px; background: #2d5016; border-radius: 50% 0; transform: rotate(45deg); }
+.leaf::before { content: ''; position: absolute; width: 50px; height: 30px; background: #4a7c2a; border-radius: 50% 0; top: 5px; left: 5px; }
+.leaf::after { content: ''; position: absolute; width: 10px; height: 25px; background: #3a661d; bottom: -15px; left: 25px; border-radius: 5px; }
+.logo-text-2 { font-size: 48px; font-weight: 800; background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 1.5px; font-family: 'Segoe UI', sans-serif; }`;
+                    break;
+                case 3:
+                    css += `.badge-logo { display: flex; align-items: center; gap: 20px; }
+.badge { width: 80px; height: 80px; background: linear-gradient(135deg, #2d5016 0%, #3a661d 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.badge::before { content: ''; position: absolute; width: 60px; height: 60px; background: white; border-radius: 50%; }
+.badge::after { content: 'V'; position: absolute; font-size: 32px; font-weight: 900; color: #2d5016; font-family: 'Segoe UI', sans-serif; }
+.badge-text { font-size: 44px; font-weight: 800; color: #2d5016; position: relative; font-family: 'Segoe UI', sans-serif; }
+.badge-text span { font-size: 16px; font-weight: 600; color: #4a7c2a; position: absolute; bottom: -10px; right: 0; }`;
+                    break;
+            }
+            
+            return css;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Farmer Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        .logo {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2d5016;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+        }
+        
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .card-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: #2d5016;
+            border-bottom: 2px solid #2d5016;
+        }
+        
+        .form-container {
+            display: none;
+        }
+        
+        .form-container.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #2d5016;
+        }
+        
+        .password-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #2d5016;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #3a6c1e;
+        }
+        
+        .reset-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #2d5016;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .reset-link:hover {
+            color: #3a6c1e;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #2d5016;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .back-link:hover {
+            color: #3a6c1e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">VEDARA</div>
+        
+        <div class="card">
+            <h1 class="card-title">Farmer Dashboard Access</h1>
+            <p class="card-subtitle">Sign in to manage your farms and crops</p>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="login">Login</div>
+                <div class="tab" data-tab="signup">Sign Up</div>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="form-container active">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="text" class="form-input" id="login-email" placeholder="farmer@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="login-password" placeholder="Enter your password">
+                </div>
+                
+                <button class="btn" id="login-btn">Sign In</button>
+                
+                <div class="reset-link" id="show-reset">Forgot Password? Reset here</div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signup-form" class="form-container">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="signup-name" placeholder="Graham Bell">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="signup-email" placeholder="farmer@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="signup-password" placeholder="Enter your password">
+                    <div class="password-note">Min. 6 characters</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">User</label>
+                    <input type="text" class="form-input" id="signup-user" placeholder="farmer,contractor,company">
+                </div>
+                
+                <button class="btn" id="signup-btn">Create Account</button>
+            </div>
+            
+            <!-- Reset Password Form -->
+            <div id="reset-form" class="form-container">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="text" class="form-input" id="reset-email" placeholder="farmer@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-input" id="reset-password" placeholder="Enter new password">
+                    <div class="password-note">Min. 6 characters</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-input" id="reset-confirm-password" placeholder="Confirm new password">
+                </div>
+                
+                <button class="btn" id="reset-btn">Reset Password</button>
+                
+                <div class="back-link" id="back-to-login">Back to Login</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.tab');
+        const forms = document.querySelectorAll('.form-container');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding form
+                forms.forEach(form => {
+                    form.classList.remove('active');
+                });
+                
+                document.getElementById(`${tabId}-form`).classList.add('active');
+            });
+        });
+        
+        // Show reset password form
+        document.getElementById('show-reset').addEventListener('click', () => {
+            forms.forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            document.getElementById('reset-form').classList.add('active');
+        });
+        
+        // Back to login from reset form
+        document.getElementById('back-to-login').addEventListener('click', () => {
+            forms.forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            document.querySelector('.tab[data-tab="login"]').classList.add('active');
+            document.getElementById('login-form').classList.add('active');
+        });
+        
+        // Form submission handlers
+        document.getElementById('login-btn').addEventListener('click', () => {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (password.trim() === '') {
+                alert('Please enter your password');
+                return;
+            }
+            
+            alert(`Login attempt for: ${email}\nPassword entered: ${password}`);
+        });
+        
+        document.getElementById('signup-btn').addEventListener('click', () => {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
+            if (name.trim() === '') {
+                alert('Please enter your full name');
+                return;
+            }
+            
+            if (password.trim() === '' || password.length < 6) {
+                alert('Please enter a password with at least 6 characters');
+                return;
+            }
+            
+        });
+        
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            const email = document.getElementById('reset-email').value;
+            const password = document.getElementById('reset-password').value;
+            const confirmPassword = document.getElementById('reset-confirm-password').value;
+            
+            if (password.trim() === '' || password.length < 6) {
+                alert('Please enter a new password with at least 6 characters');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            alert(`Password reset for: ${email}\nNew password: ${password}`);
+            
+            // Go back to login after reset
+            forms.forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            document.querySelector('.tab[data-tab="login"]').classList.add('active');
+            document.getElementById('login-form').classList.add('active');
+            
+            // Clear password fields
+            document.getElementById('login-password').value = '';
+            document.getElementById('reset-password').value = '';
+            document.getElementById('reset-confirm-password').value = '';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Blog Content */
+        .blog-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            padding: 80px 0;
+        }
+        
+        /* Featured Article */
+        .featured-article {
+            margin-bottom: 60px;
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            overflow: hidden;
+        }
+        
+        .featured-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #2d5016;
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .featured-title {
+            font-size: 36px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        
+        .featured-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: #e8f5e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d5016;
+            font-size: 36px;
+        }
+        
+        .article-content {
+            padding: 30px;
+        }
+        
+        .article-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #e8f5e8;
+            color: #2d5016;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .article-title {
+            font-size: 22px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        
+        .article-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 13px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+        
+        .sidebar-section {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-size: 20px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e8f5e8;
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .categories-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .category-link {
+            display: flex;
+            justify-content: space-between;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .category-link:hover {
+            color: #2d5016;
+        }
+        
+        .category-count {
+            background: #2d5016;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        
+        /* Popular Articles */
+        .popular-article {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .popular-article:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .popular-image {
+            width: 80px;
+            height: 80px;
+            background: #e8f5e8;
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d5016;
+            font-size: 24px;
+        }
+        
+        .popular-content h4 {
+            font-size: 16px;
+            color: #2d5016;
+            margin-bottom: 5px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        /* Newsletter */
+        .newsletter-box {
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .newsletter-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .newsletter-box p {
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        
+        .newsletter-input {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 60px;
+        }
+        
+        .page-link {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .page-link:hover, .page-link.active {
+            background: #2d5016;
+            color: white;
+            border-color: #2d5016;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: #2d5016;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #3a6c1e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(45, 80, 22, 0.2);
+        }
+        
+        .btn-read {
+            padding: 10px 24px;
+            width: auto;
+            font-size: 14px;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #2d5016;
+            border: 2px solid #2d5016;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #2d5016;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: #3a6c1e;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .blog-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .featured-title {
+                font-size: 28px;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="api.html">API</a></li>
+                        <li><a href="blog.html" class="active">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </nav>
+                
+                <a href="dashboard.html" class="btn btn-secondary">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>VEDARA Blog</h1>
+            <p>Insights, stories, and updates about agriculture technology, sustainable farming, and farmer success stories.</p>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <div class="container">
+        <div class="blog-content">
+            <!-- Main Content -->
+            <main>
+                <!-- Featured Article -->
+                <section class="featured-article">
+                    <div class="featured-image">
+                        Featured Article
+                    </div>
+                    
+                    <span class="featured-tag">Farming Technology</span>
+                    <h2 class="featured-title">How AI is Revolutionizing Smallholder Farming in Africa</h2>
+                    
+                    <div class="featured-meta">
+                        <span>By John Kamau</span>
+                        <span>January 15, 2024</span>
+                        <span>8 min read</span>
+                    </div>
+                    
+                    <p style="font-size: 18px; color: #555; margin-bottom: 30px; line-height: 1.7;">
+                        Artificial intelligence is no longer just for tech giants. Discover how African farmers are using AI-powered tools to predict weather patterns, detect crop diseases early, and optimize irrigation, resulting in 40% higher yields.
+                    </p>
+                    
+                    <a href="article-ai-farming.html" class="btn btn-read">Read Full Article</a>
+                </section>
+
+                <!-- Articles Grid -->
+                <div class="articles-grid">
+                    <!-- Article 1 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            💧
+                        </div>
+                        
+                        <div class="article-content">
+                            <span class="article-tag">Water Management</span>
+                            <h3 class="article-title">Smart Irrigation: Saving Water While Increasing Yields</h3>
+                            <p class="article-excerpt">
+                                Learn how farmers are using sensor technology and data analytics to reduce water usage by 35% while improving crop quality and yield.
+                            </p>
+                            
+                            <div class="article-meta">
+                                <span>By Sarah Amani</span>
+                                <span>Jan 12, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            🌾
+                        </div>
+                        
+                        <div class="article-content">
+                            <span class="article-tag">Success Stories</span>
+                            <h3 class="article-title">From 2 to 20 Acres: Mary's Journey with VEDARA</h3>
+                            <p class="article-excerpt">
+                                How one farmer in Western Kenya expanded her farm tenfold using data-driven decisions and access to digital markets through our platform.
+                            </p>
+                            
+                            <div class="article-meta">
+                                <span>By Robert Ochieng</span>
+                                <span>Jan 10, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            📱
+                        </div>
+                        
+                        <div class="article-content">
+                            <span class="article-tag">Mobile Technology</span>
+                            <h3 class="article-title">Why Mobile-First Design is Critical for AgriTech</h3>
+                            <p class="article-excerpt">
+                                Over 80% of African farmers access the internet via mobile phones. Discover how we're building for this reality with our mobile-first approach.
+                            </p>
+                            
+                            <div class="article-meta">
+                                <span>By Mary Wanjiku</span>
+                                <span>Jan 8, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            🌱
+                        </div>
+                        
+                        <div class="article-content">
+                            <span class="article-tag">Sustainable Farming</span>
+                            <h3 class="article-title">Regenerative Agriculture: The Future of Farming</h3>
+                            <p class="article-excerpt">
+                                Explore how traditional farming practices combined with modern technology can restore soil health and create more resilient farming systems.
+                            </p>
+                            
+                            <div class="article-meta">
+                                <span>By Dr. James Mwangi</span>
+                                <span>Jan 5, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 5 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            📊
+                        </div>
+                        
+                        <div class="article-content">
+                            <span class="article-tag">Data Analytics</span>
+                            <h3 class="article-title">Making Sense of Farm Data: A Beginner's Guide</h3>
+                            <p class="article-excerpt">
+                                You're collecting farm data, but what does it all mean? Learn how to turn numbers into actionable insights for your farming operations.
+                            </p>
+                            
+                            <div class="article-meta">
+                                <span>By Tech Team</span>
+                                <span>Jan 3, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 6 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            🤝
+                        </div>
+                        
+                        <div class="article-content">
+                            <span class="article-tag">Market Access</span>
+                            <h3 class="article-title">Connecting Farmers Directly to Buyers: Our Marketplace Journey</h3>
+                            <p class="article-excerpt">
+                                How we built a digital marketplace that has helped farmers increase their profits by cutting out middlemen and accessing better prices.
+                            </p>
+                            
+                            <div class="article-meta">
+                                <span>By Business Team</span>
+                                <span>Dec 28, 2023</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">4</a>
+                    <a href="#" class="page-link">→</a>
+                </div>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Categories -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Categories</h3>
+                    <ul class="categories-list">
+                        <li>
+                            <a href="#" class="category-link">
+                                <span>Farming Technology</span>
+                                <span class="category-count">12</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="category-link">
+                                <span>Sustainable Farming</span>
+                                <span class="category-count">8</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="category-link">
+                                <span>Success Stories</span>
+                                <span class="category-count">15</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="category-link">
+                                <span>Market Access</span>
+                                <span class="category-count">6</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="category-link">
+                                <span>Water Management</span>
+                                <span class="category-count">7</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="category-link">
+                                <span>Product Updates</span>
+                                <span class="category-count">5</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Popular Articles -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Popular Articles</h3>
+                    
+                    <div class="popular-article">
+                        <div class="popular-image">🌱</div>
+                        <div class="popular-content">
+                            <h4>5 Essential Mobile Apps for Modern Farmers</h4>
+                            <span style="color: #888; font-size: 13px;">Jan 2, 2024</span>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-article">
+                        <div class="popular-image">💰</div>
+                        <div class="popular-content">
+                            <h4>How to Access Agricultural Financing in 2024</h4>
+                            <span style="color: #888; font-size: 13px;">Dec 20, 2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-article">
+                        <div class="popular-image">🤖</div>
+                        <div class="popular-content">
+                            <h4>IoT Sensors: Are They Worth the Investment?</h4>
+                            <span style="color: #888; font-size: 13px;">Dec 15, 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="newsletter-box">
+                    <h3>Stay Updated</h3>
+                    <p>Get the latest articles, farming tips, and product updates delivered to your inbox.</p>
+                    
+                    <form>
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                    
+                    <p style="font-size: 12px; opacity: 0.7; margin-top: 15px;">No spam. Unsubscribe anytime.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VEDARA</h3>
+                    <p>Empowering farmers with technology for sustainable agriculture. We build tools that help farmers grow more with less.</p>
+                    <p>Transforming agriculture through innovation and community-driven solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">F</a>
+                        <a href="#" class="social-icon">T</a>
+                        <a href="#" class="social-icon">I</a>
+                        <a href="#" class="social-icon">L</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Mission</h3>
+                    <p>To democratize agricultural technology and make advanced farming tools accessible to every farmer, regardless of farm size or location.</p>
+                    <p>We believe in sustainable growth, farmer empowerment, and technological innovation for food security.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>VEDARA AgriTech Solutions</p>
+                    <p>Nairobi, Kenya</p>
+                    <p>Email: info@vedara.com</p>
+                    <p>Phone: +254 700 123 456</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Commitment</h3>
+                    <p>We are committed to farmer success, environmental sustainability, and building technology that serves real needs.</p>
+                    <p>Every feature, every update is designed with farmers at the center of our thinking.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

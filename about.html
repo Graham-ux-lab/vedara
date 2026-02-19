@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Mission & Vision */
+        .mission-vision {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+        
+        .mv-card {
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .mission {
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            color: white;
+        }
+        
+        .vision {
+            background: #f9f9f9;
+            color: #333;
+        }
+        
+        .mv-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .mv-card h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        /* Story Section */
+        .story {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: #2d5016;
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
+        
+        .story-timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 40px 0;
+        }
+        
+        .story-timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #2d5016, #3a6c1e);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #2d5016;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #2d5016;
+        }
+        
+        .timeline-year {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2d5016;
+            margin-bottom: 10px;
+        }
+        
+        /* Values Section */
+        .values {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 40px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            background: #e8f5e8;
+        }
+        
+        .value-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #2d5016;
+        }
+        
+        .value-card h3 {
+            font-size: 24px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .member-photo {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 64px;
+        }
+        
+        .member-info {
+            padding: 30px;
+        }
+        
+        .member-name {
+            font-size: 24px;
+            color: #2d5016;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .member-role {
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        /* Partners Section */
+        .partners {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .partner-logo {
+            height: 100px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d5016;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 42px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background-color: #2d5016;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a6c1e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(45, 80, 22, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #2d5016;
+            border: 2px solid #2d5016;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: #2d5016;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mv-card {
+                padding: 30px;
+            }
+            
+            .values-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="how_it_works.html">How It Works</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="API.html">API</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <a href="dashboard.html" class="btn btn-secondary">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>About VEDARA</h1>
+            <p>We're on a mission to transform agriculture through technology, empowering farmers to grow more with less while building sustainable farming communities.</p>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mv-grid">
+                <div class="mv-card mission">
+                    <div class="mv-icon">🎯</div>
+                    <h2>Our Mission</h2>
+                    <p>To democratize agricultural technology, making advanced farming tools accessible and affordable for every farmer, regardless of farm size or location. We believe that technology should empower, not exclude.</p>
+                </div>
+                
+                <div class="mv-card vision">
+                    <div class="mv-icon">👁️</div>
+                    <h2>Our Vision</h2>
+                    <p>A world where every farmer has access to the tools and knowledge needed to maximize productivity while preserving our environment for future generations. We envision sustainable agriculture as the norm, not the exception.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="story">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            
+            <div class="story-content">
+                <p style="font-size: 18px; color: #555; margin-bottom: 30px; text-align: center;">
+                    Founded by a team of agronomists, software engineers, and farmers, VEDARA was born from a simple observation: smallholder farmers were using 20th-century tools to solve 21st-century challenges.
+                </p>
+                
+                <div class="story-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year"></div>
+                        <p>VEDARA was founded in Nairobi, Kenya, after a year of research with 200+ smallholder farmers. Our first product was a simple SMS-based crop advisory service.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year"></div>
+                        <p>Launched our first mobile app, reaching 5,000 farmers across East Africa. Partnered with agricultural research institutions to improve our crop database.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year"></div>
+                        <p>Expanded to West Africa. Introduced IoT sensor integration for soil moisture and weather monitoring. Reached 20,000 active users.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year"></div>
+                        <p>Launched marketplace features connecting farmers directly to buyers. Introduced AI-powered disease detection using image recognition.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year"></div>
+                        <p>Expanded to Southern Africa. Partnered with major agricultural banks for integrated financing solutions. Reached 50,000 farmers.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year"></div>
+                        <p>Launched API platform for developers and agribusinesses. Introduced carbon credit tracking for sustainable farming practices.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year"></div>
+                        <p>Currently serving over 100,000 farmers across 15 African countries. Continuously innovating to make farming smarter and more sustainable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">Our Values</h2>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Sustainability First</h3>
+                    <p>We prioritize environmental stewardship in all our solutions, helping farmers adopt practices that protect our planet for future generations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Farmer-Centric</h3>
+                    <p>Farmers are at the heart of everything we do. We listen, learn, and build solutions that address real challenges faced by real farmers.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>We continuously explore new technologies and approaches to solve age-old farming challenges in novel ways.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">📚</div>
+                    <h3>Knowledge Sharing</h3>
+                    <p>We believe in democratizing agricultural knowledge, making expert insights accessible to every farmer.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🤲</div>
+                    <h3>Community</h3>
+                    <p>We foster connections between farmers, creating networks of support, collaboration, and shared learning.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Impact Driven</h3>
+                    <p>We measure success not just in profits, but in lives improved, yields increased, and communities transformed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Meet Our Leadership</h2>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">GB</div>
+                    <div class="member-info">
+                        <h3 class="member-name">Graham Bell</h3>
+                        <p class="member-role">CEO & Co-founder</p>
+                        <p style="color: #666; font-size: 14px;">Former agronomist with 15+ years in sustainable agriculture.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">MW</div>
+                    <div class="member-info">
+                        <h3 class="member-name">Mary Wanjiku</h3>
+                        <p class="member-role">CTO & Co-founder</p>
+                        <p style="color: #666; font-size: 14px;">Software engineer specializing in agricultural IoT systems.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">RO</div>
+                    <div class="member-info">
+                        <h3 class="member-name">Sarah Amani</h3>
+                        <p class="member-role">Head of Product</p>
+                        <p style="color: #666; font-size: 14px;">Former product manager at leading agritech companies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="partners">
+        <div class="container">
+            <h2 class="section-title">Our Partners</h2>
+            
+            <div class="partners-grid">
+                <div class="partner-logo">FAO</div>
+                <div class="partner-logo">World Bank</div>
+                <div class="partner-logo">AGRA</div>
+                <div class="partner-logo">KALRO</div>
+                <div class="partner-logo">USAID</div>
+                <div class="partner-logo">Gates Foundation</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>100,000+</h3>
+                    <p>Farmers Empowered</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>15</h3>
+                    <p>African Countries</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>45%</h3>
+                    <p>Average Yield Increase</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3>200+</h3>
+                    <p>Team Members</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Join Our Mission</h2>
+            <p style="color: #666; max-width: 700px; margin: 0 auto 40px;">Whether you're a farmer, developer, investor, or passionate about sustainable agriculture, there's a place for you in the VEDARA community.</p>
+            
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="careers.html" class="btn btn-secondary">Join Our Team</a>
+                <a href="dashboard.html" class="btn btn-secondary">Become a Partner</a>
+                <a href="contact.html" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VEDARA</h3>
+                    <p>Transforming agriculture through technology, one farm at a time.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="twitter.html">Twitter</a></li>
+                        <li><a href="linkedin.html">LinkedIn</a></li>
+                        <li><a href="facebook.html">Facebook</a></li>
+                        <li><a href="instagram.html">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

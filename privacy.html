@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - Privacy Policy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Privacy Content */
+        .privacy-content {
+            padding: 40px 0 60px;
+        }
+        
+        .privacy-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f5e8;
+        }
+        
+        .privacy-point {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2d5016;
+        }
+        
+        .privacy-point h3 {
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .data-table th {
+            background: #e8f5e8;
+            padding: 15px;
+            text-align: left;
+            color: #2d5016;
+            font-weight: 600;
+            border: 1px solid #ddd;
+        }
+        
+        .data-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        /* Contact Box */
+        .contact-box {
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+            border: 2px solid #2d5016;
+        }
+        
+        .contact-box h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 50px 0 25px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .contact-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="privacy.html" class="active">Privacy</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p>How we collect, use, and protect your personal information.</p>
+        </div>
+    </section>
+
+    <!-- Privacy Content -->
+    <div class="container">
+        <div class="privacy-content">
+            <!-- Information Collection -->
+            <div class="privacy-section">
+                <h2 class="section-title">Information We Collect</h2>
+                
+                <div class="privacy-point">
+                    <h3>Account Information</h3>
+                    <p>Name, email address, phone number, and farm location details when you create an account.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h3>Farm Data</h3>
+                    <p>Crop information, planting dates, harvest data, soil conditions, and irrigation details you provide.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h3>Usage Data</h3>
+                    <p>How you interact with our platform, features used, and device information for service improvement.</p>
+                </div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Purpose</th>
+                            <th>Retention</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Account Information</td>
+                            <td>Service delivery and communication</td>
+                            <td>While account active + 90 days</td>
+                        </tr>
+                        <tr>
+                            <td>Farm Operations Data</td>
+                            <td>Agricultural recommendations and analytics</td>
+                            <td>While account active</td>
+                        </tr>
+                        <tr>
+                            <td>Usage Analytics</td>
+                            <td>Service improvement and feature development</td>
+                            <td>24 months anonymized</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Data Usage -->
+            <div class="privacy-section">
+                <h2 class="section-title">How We Use Your Data</h2>
+                
+                <div class="privacy-point">
+                    <h3>Service Delivery</h3>
+                    <p>To provide personalized farming recommendations, weather alerts, and crop management tools.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h3>Communication</h3>
+                    <p>To send important updates, service notifications, and agricultural insights relevant to your farm.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h3>Improvement</h3>
+                    <p>To analyze aggregated, anonymized data for platform enhancement and agricultural research.</p>
+                </div>
+            </div>
+
+            <!-- Data Protection -->
+            <div class="privacy-section">
+                <h2 class="section-title">Data Protection</h2>
+                
+                <div class="privacy-point">
+                    <h3>Encryption</h3>
+                    <p>All data transmitted between your device and our servers is encrypted using industry-standard TLS.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h3>Access Control</h3>
+                    <p>Strict access controls ensure only authorized personnel can access your personal information.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h3>Regular Audits</h3>
+                    <p>Our security practices undergo regular third-party audits to maintain compliance with industry standards.</p>
+                </div>
+            </div>
+
+            <!-- Your Rights -->
+            <div class="privacy-section">
+                <h2 class="section-title">Your Rights</h2>
+                
+                <div class="privacy-point">
+                    <h3>Access and Correction</h3>
+                    <p>You can access and update your personal information at any time through your account settings.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h3>Data Export</h3>
+                    <p>Request a copy of your data in a structured, commonly used format for transfer to another service.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h3>Deletion</h3>
+                    <p>You can request deletion of your personal data, subject to legal retention requirements.</p>
+                </div>
+            </div>
+
+            <!-- Contact Box -->
+            <div class="contact-box">
+                <h3>Privacy Questions?</h3>
+                <p style="color: #666; margin-bottom: 20px;">Contact our Data Protection Officer for privacy-related inquiries.</p>
+                <p style="font-weight: 600; color: #2d5016;">privacy@vedara.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Privacy Commitment</h3>
+                    <p>We are committed to protecting your personal information and being transparent about our data practices. Your trust is essential to our mission of serving farmers.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Data Responsibility</h3>
+                    <p>We handle all farmer data with the highest standards of security and confidentiality. Data is used only for purposes that benefit our farming community.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Policy Updates</h3>
+                    <p>This privacy policy is reviewed regularly and updated as needed. Significant changes are communicated to users through platform notifications.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. Privacy policy version 2.1, effective January 2024.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

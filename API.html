@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEDARA - API Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2d5016;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #2d5016;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* API Features */
+        .api-features {
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #2d5016;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #2d5016;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        /* API Documentation */
+        .api-docs {
+            margin-bottom: 80px;
+        }
+        
+        .docs-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .endpoint {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #2d5016;
+        }
+        
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .method {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 15px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .method.get {
+            background: #e8f5e8;
+            color: #2d5016;
+        }
+        
+        .method.post {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .method.put {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        
+        .method.delete {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .endpoint-url {
+            font-family: 'Monaco', 'Courier New', monospace;
+            background: #2d2d2d;
+            color: #f8f8f8;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .code-block .keyword {
+            color: #569cd6;
+        }
+        
+        .code-block .string {
+            color: #ce9178;
+        }
+        
+        .code-block .comment {
+            color: #6a9955;
+        }
+        
+        .code-block .number {
+            color: #b5cea8;
+        }
+        
+        /* Authentication */
+        .authentication {
+            margin-bottom: 80px;
+        }
+        
+        .auth-steps {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .auth-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #2d5016;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        /* SDKs */
+        .sdks {
+            margin-bottom: 80px;
+        }
+        
+        .sdks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .sdk-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .sdk-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .sdk-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .sdk-card h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: #2d5016;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a6c1e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(45, 80, 22, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #2d5016;
+            border: 2px solid #2d5016;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #2d5016 0%, #3a6c1e 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 80px;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .features-grid,
+            .sdks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .auth-step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: 15px;
+            }
+            
+            .endpoint-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .method {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">VEDARA</a>
+                <nav>
+                    <ul>
+                        <li><a href="home page.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="how_it_works.html">How It Works</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="API.html" class="active">API Access</a></li>
+                        <li><a href="dashboard.html">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>VEDARA API Access</h1>
+                <p>Build powerful agricultural applications with our comprehensive REST API. Access farm data, weather information, crop analytics, and more programmatically.</p>
+                <a href="#get-started" class="btn">Get API Keys</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- API Features -->
+            <section class="api-features">
+                <h2 class="section-title">API Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Real-time Data Access</h3>
+                        <p>Access live farm data including crop health, weather conditions, soil moisture levels, and equipment status in real-time.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Comprehensive Endpoints</h3>
+                        <p>Over 50 RESTful endpoints covering farms, crops, weather, market data, analytics, and user management.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Webhook Support</h3>
+                        <p>Set up webhooks to receive notifications for events like harvest alerts, weather warnings, and price changes.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Rate Limiting</h3>
+                        <p>Generous rate limits with tier-based access. Enterprise plans offer unlimited API calls.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Data Export</h3>
+                        <p>Export farm data in JSON, CSV, or XML formats for integration with other systems and analytics tools.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Sandbox Environment</h3>
+                        <p>Test your integration with our full-featured sandbox environment before going to production.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Start -->
+            <section class="api-docs" id="get-started">
+                <h2 class="section-title">Quick Start</h2>
+                <div class="docs-container">
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <h3>Get API Key</h3>
+                        </div>
+                        <div class="endpoint-url">GET https://api.vedara.com/v1/auth/apikey</div>
+                        <p>First, obtain your API key from the dashboard. You'll need this for all API requests.</p>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <h3>Test Connection</h3>
+                        </div>
+                        <div class="endpoint-url">GET https://api.vedara.com/v1/ping</div>
+                        <p>Test your connection to the VEDARA API:</p>
+                        
+                        <div class="code-block">
+                            <span class="keyword">curl</span> -X GET \<br>
+                            -H <span class="string">"Authorization: Bearer YOUR_API_KEY"</span> \<br>
+                            https://api.vedara.com/v1/ping
+                        </div>
+                        
+                        <p><strong>Response:</strong></p>
+                        <div class="code-block">
+                            {<br>
+                            &nbsp;&nbsp;<span class="string">"status"</span>: <span class="string">"success"</span>,<br>
+                            &nbsp;&nbsp;<span class="string">"message"</span>: <span class="string">"API is working"</span>,<br>
+                            &nbsp;&nbsp;<span class="string">"timestamp"</span>: <span class="string">"2024-01-15T10:30:00Z"</span><br>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Authentication -->
+            <section class="authentication">
+                <h2 class="section-title">Authentication</h2>
+                <div class="auth-steps">
+                    <div class="auth-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3 style="color: #2d5016; margin-bottom: 10px;">Get Your API Key</h3>
+                            <p>Navigate to Settings → API Access in your VEDARA dashboard to generate your API key.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="auth-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3 style="color: #2d5016; margin-bottom: 10px;">Include in Requests</h3>
+                            <p>Include the API key in the Authorization header of all your requests:</p>
+                            <div class="code-block" style="margin-top: 15px;">
+                                Authorization: Bearer <span class="string">sk_live_1234567890abcdef</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="auth-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3 style="color: #2d5016; margin-bottom: 10px;">Test Authentication</h3>
+                            <p>Verify your authentication is working by making a test request:</p>
+                            <div class="code-block" style="margin-top: 15px;">
+                                <span class="comment"># Test with curl</span><br>
+                                <span class="keyword">curl</span> -H <span class="string">"Authorization: Bearer YOUR_API_KEY"</span> \<br>
+                                https://api.vedara.com/v1/farms
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Example Endpoints -->
+            <section class="api-docs">
+                <h2 class="section-title">Example Endpoints</h2>
+                <div class="docs-container">
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <h3>List Farms</h3>
+                        </div>
+                        <div class="endpoint-url">GET https://api.vedara.com/v1/farms</div>
+                        <p>Retrieve a list of all farms associated with your account.</p>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <h3>Get Crop Details</h3>
+                        </div>
+                        <div class="endpoint-url">GET https://api.vedara.com/v1/farms/{farm_id}/crops/{crop_id}</div>
+                        <p>Retrieve detailed information about a specific crop.</p>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method post">POST</span>
+                            <h3>Create New Crop</h3>
+                        </div>
+                        <div class="endpoint-url">POST https://api.vedara.com/v1/farms/{farm_id}/crops</div>
+                        <p>Create a new crop record:</p>
+                        
+                        <div class="code-block">
+                            {<br>
+                            &nbsp;&nbsp;<span class="string">"name"</span>: <span class="string">"Maize"</span>,<br>
+                            &nbsp;&nbsp;<span class="string">"variety"</span>: <span class="string">"DH04"</span>,,<br>
+                            &nbsp;&nbsp;<span class="string">"planting_date"</span>: <span class="string">"2024-01-15"</span>,<br>
+                            &nbsp;&nbsp;<span class="string">"area_acres"</span>: <span class="number">2.5</span>,<br>
+                            &nbsp;&nbsp;<span class="string">"status"</span>: <span class="string">"growing"</span><br>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <h3>Get Weather Data</h3>
+                        </div>
+                        <div class="endpoint-url">GET https://api.vedara.com/v1/weather/{location_id}/forecast</div>
+                        <p>Retrieve weather forecast for a specific farm location.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SDKs -->
+            <section class="sdks">
+                <h2 class="section-title">Official SDKs</h2>
+                <div class="sdks-grid">
+                    <div class="sdk-card">
+                        <div class="sdk-icon">🐍</div>
+                        <h3>Python SDK</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Full-featured Python library for easy integration.</p>
+                        <a href="https://github.com/vedara/python-sdk" class="btn btn-small">GitHub</a>
+                    </div>
+                    
+                    <div class="sdk-card">
+                        <div class="sdk-icon">🟨</div>
+                        <h3>JavaScript SDK</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Node.js and browser-compatible JavaScript library.</p>
+                        <a href="https://github.com/vedara/js-sdk" class="btn btn-small">GitHub</a>
+                    </div>
+                    
+                    <div class="sdk-card">
+                        <div class="sdk-icon">☕</div>
+                        <h3>Java SDK</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Enterprise-grade Java library for Android and backend.</p>
+                        <a href="https://github.com/vedara/java-sdk" class="btn btn-small">GitHub</a>
+                    </div>
+                    
+                    <div class="sdk-card">
+                        <div class="sdk-icon">🦀</div>
+                        <h3>Rust SDK</h3>
+                        <p style="margin-bottom: 20px; color: #666;">High-performance Rust library for system applications.</p>
+                        <a href="https://github.com/vedara/rust-sdk" class="btn btn-small">GitHub</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rate Limits -->
+            <section class="api-docs">
+                <h2 class="section-title">Rate Limits</h2>
+                <div class="docs-container">
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                        <thead>
+                            <tr style="background: #f8f9fa;">
+                                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #2d5016;">Plan</th>
+                                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #2d5016;">Requests/Minute</th>
+                                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #2d5016;">Requests/Day</th>
+                                <th style="padding: 15px; text-align: left; border-bottom: 2px solid #2d5016;">Concurrent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 15px;">Starter</td>
+                                <td style="padding: 15px;">60</td>
+                                <td style="padding: 15px;">10,000</td>
+                                <td style="padding: 15px;">5</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 15px;">Professional</td>
+                                <td style="padding: 15px;">300</td>
+                                <td style="padding: 15px;">100,000</td>
+                                <td style="padding: 15px;">20</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 15px;">Enterprise</td>
+                                <td style="padding: 15px;">Unlimited</td>
+                                <td style="padding: 15px;">Unlimited</td>
+                                <td style="padding: 15px;">100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                        <h4 style="color: #2d5016; margin-bottom: 10px;">Rate Limit Headers</h4>
+                        <p>All API responses include rate limit headers:</p>
+                        <div class="code-block" style="margin-top: 15px;">
+                            X-RateLimit-Limit: <span class="number">60</span> <span class="comment"># Requests per minute</span><br>
+                            X-RateLimit-Remaining: <span class="number">45</span> <span class="comment"># Requests remaining</span><br>
+                            X-RateLimit-Reset: <span class="number">1610632800</span> <span class="comment"># Unix timestamp when limit resets</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+
+            <!-- Support -->
+            <section style="text-align: center; padding: 60px 0;">
+                <h2 style="font-size: 32px; color: #2d5016; margin-bottom: 20px;">Need Help?</h2>
+                <p style="color: #666; max-width: 600px; margin: 0 auto 30px;">Our developer support team is here to help you integrate with our API.</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="community.html" class="btn btn-secondary" style="width: auto;">Community Forum</a>
+                    <a href="contact.html" class="btn btn-secondary" style="width: auto;">Contact Sales</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VEDARA API</h3>
+                    <p>Powerful agricultural APIs for developers and enterprises.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Documentation</h3>
+                    <ul>
+                        <li><a href="API.html">API Reference</a></li>
+                        <li><a href="documentation.html">Guides & Tutorials</a></li>
+                        <li><a href="security.html">Changelog</a></li>
+                        <li><a href="security.html">Migration Guides</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="blog.html">Developer Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html">API Terms</a></li>
+                        <li><a href="security.html">Security</a></li>
+                        <li><a href="security.html">Compliance</a></li>
+                        <li><a href="security.html">Service Level Agreement</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 VEDARA AgriTech Solutions. All API access requires an Enterprise plan.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
